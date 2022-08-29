@@ -13,3 +13,4 @@ yarn-error.log
 /bootstrap/cache/config.php
 ctech.zip
 server.php
+config/upload.php

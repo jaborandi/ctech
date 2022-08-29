@@ -167,7 +167,16 @@
                             <div class="card-4 mb-3">
                                 <div class="row gutter-sm">
                                     <div class="col-2">
-                                        <img width="" height="" src="{{ getImgSizePath($data['status'], 'medium') }}" class="img-fluid" />
+                                        <?php if($data['status'] == 'CONCLUÍDA'){
+                                        ?>
+                                        <i class="material-icons mi-xlg" style="color:#4caf50">check_circle</i>
+                                        <?php } else if($data['status'] == 'AGUARDANDO') { ?>
+                                        <i class="material-icons mi-xlg" style="color:#FFCC00">access_alarm</i>
+                                        <?php
+                                        } else { ?>
+                                        <i class="material-icons mi-xlg" style="color:#82B1FF">assignment</i>    
+                                        <?php }
+                                        ?>
                                     </div>
                                     <div class="col">
                                         <h6 class="text-primary text-bold">
@@ -256,9 +265,20 @@
 @section('pagecss')
 <style>
 
+</style><style>
+
 </style>
 @endsection
 @section('pagejs')
+<script>
+	/*
+	* Page Custom Javascript | Jquery codes
+	*/
+
+	//$(document).ready(function(){
+	//	
+	//});
+</script>
 <script>
 	/*
 	* Page Custom Javascript | Jquery codes

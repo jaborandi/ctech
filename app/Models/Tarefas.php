@@ -180,12 +180,12 @@ class Tarefas extends Model
 	public static function atribuidasFields(){
 		return [ 
 			"id",
+			"status",
 			"titulo",
 			"fazer_ate",
 			"prioridade",
 			"descricao",
 			"usuarios",
-			"status",
 			"inserido_por",
 			"inserido_em",
 			"atualizado_por",
@@ -203,12 +203,12 @@ class Tarefas extends Model
 	public static function exportAtribuidasFields(){
 		return [ 
 			"id",
+			"status",
 			"titulo",
 			"fazer_ate",
 			"prioridade",
 			"descricao",
 			"usuarios",
-			"status",
 			"inserido_por",
 			"inserido_em",
 			"atualizado_por",

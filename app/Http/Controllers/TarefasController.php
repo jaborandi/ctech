@@ -143,8 +143,27 @@ class TarefasController extends Controller
 		$orderby = $request->orderby ?? "tarefas.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);
+		$query->where("inserido_por", "=" , auth()->user()->name);
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		if($request->tarefas_status){
+			$vals = $request->tarefas_status;
+			$query->whereIn("tarefas.status", $vals);
+		}
+		if($request->tarefas_fazer_ate){
+			$vals = explode("-to-",$request->tarefas_fazer_ate);
+			$fromDate = $vals[0] ?? null;
+			$toDate = $vals[1] ?? null;
+			if($fromDate && $toDate){
+				$query->whereRaw("tarefas.fazer_ate BETWEEN ? AND ?", [$fromDate, $toDate]);
+			}
+			elseif($fromDate){
+				$query->whereRaw("tarefas.fazer_ate >= ?", [$fromDate]);
+			}
+			elseif($toDate){
+				$query->whereRaw("tarefas.fazer_ate <= ?", [$toDate]);
+			}
 		}
 		$records = $query->paginate($limit, Tarefas::atribuidasFields());
 		return $this->renderView($view, compact("records"));

@@ -35,7 +35,7 @@
 		],
 		
 		[
-			'path' => '',
+			'path' => 'tarefas',
 			'label' => "Tarefas", 
 			'icon' => '<i class="material-icons ">assignment</i>','submenu' => [
 		[
