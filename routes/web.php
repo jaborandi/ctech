@@ -147,12 +147,6 @@ Route::get('componentsdata/users_email_value_exist',  function(Request $request)
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/compras_status_option_list',  function(Request $request){
-		$compModel = new App\Models\ComponentsData();
-		return $compModel->compras_status_option_list($request);
-	}
-)->middleware(['auth']);
-	
 Route::get('componentsdata/getcount_tarefasaguardando',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->getcount_tarefasaguardando($request);

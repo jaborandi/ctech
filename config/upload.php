@@ -1,7 +1,7 @@
 
 <?php 
 	return [
-		"tempDir" => "public/uploads/temp/", 
+		"tempDir" => "uploads/temp/", 
 		"import" => [
 			"file_name_type" => "timestamp",
 			"extensions" => "json,csv",
@@ -9,7 +9,7 @@
 			"max_file_size" => "3",
 			"return_full_path" => false,
 			"filename_prefix" => "",
-			"upload_dir" => "public/uploads/files/"
+			"upload_dir" => "uploads/files/"
 		],
 		"summernote_images_upload" => [
 			"file_name_type" => "random",
@@ -18,7 +18,7 @@
 			"max_file_size" => "3",
 			"return_full_path" => false,
 			"filename_prefix" => "",
-			"upload_dir" => "public/uploads/photos/"
+			"upload_dir" => "uploads/photos/"
 		],
 		
 		"imagem" => [
@@ -28,7 +28,7 @@
 			"max_file_size" => 10, //in mb
 			"return_full_path" => false,
 			"filename_prefix" => "",
-			"upload_dir" => "public/uploads/files",
+			"upload_dir" => "uploads/files",
 			"image_resize" => [ 
 				"small" => ["width" => 100, "height" => 100, "mode" => "contain"], 
 				"medium" => ["width" => 480, "height" => 480, "mode" => "contain"], 
@@ -44,7 +44,7 @@
 			"max_file_size" => 100, //in mb
 			"return_full_path" => false,
 			"filename_prefix" => "",
-			"upload_dir" => "public/uploads/files",
+			"upload_dir" => "uploads/files",
 			
 		],
 
@@ -55,7 +55,7 @@
 			"max_file_size" => 3, //in mb
 			"return_full_path" => false,
 			"filename_prefix" => "",
-			"upload_dir" => "public/uploads/files",
+			"upload_dir" => "uploads/files",
 			"image_resize" => [ 
 				"small" => ["width" => 100, "height" => 100, "mode" => "cover"], 
 				"medium" => ["width" => 480, "height" => 480, "mode" => "contain"], 

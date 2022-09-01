@@ -67,18 +67,6 @@ class ComponentsData{
 	
 
 	/**
-     * compras_status_option_list Model Action
-     * @return array
-     */
-	function compras_status_option_list(){
-		$sqltext = "SELECT  DISTINCT status AS value,status AS label FROM compras ORDER BY status ASC";
-		$query_params = [];
-		$arr = DB::select(DB::raw($sqltext), $query_params);
-		return $arr;
-	}
-	
-
-	/**
      * getcount_tarefasaguardando Model Action
      * @return int
      */

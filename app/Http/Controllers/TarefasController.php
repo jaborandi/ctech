@@ -25,9 +25,14 @@ class TarefasController extends Controller
 			$search = trim($request->search);
 			Tarefas::search($query, $search); // search table records
 		}
-		$orderby = $request->orderby ?? "tarefas.id";
-		$ordertype = $request->ordertype ?? "desc";
-		$query->orderBy($orderby, $ordertype);
+		if($request->orderby){
+			$orderby = $request->orderby;
+			$ordertype = ($request->ordertype ? $request->ordertype : "desc");
+			$query->orderBy($orderby, $ordertype);
+		}
+		else{
+			$query->orderBy("tarefas.id", "DESC");
+		}
 		$query->where("usuarios", "=" , auth()->user()->id);
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field

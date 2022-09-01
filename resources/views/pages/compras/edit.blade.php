@@ -37,42 +37,13 @@
                                 @csrf
                                 <div>
                                     <div class="form-group ">
-                                        <label class="control-label" for="urgencia">Urgência </label>
-                                        <div id="ctrl-urgencia-holder" class=" "> 
-                                            <?php
-                                                $options = Menu::urgencia();
-                                                $field_value = $data['urgencia'];
-                                                if(!empty($options)){
-                                                foreach($options as $option){
-                                                $value = $option['value'];
-                                                $label = $option['label'];
-                                                //check if value is among checked options
-                                                $checked = Html::get_record_checked($field_value, $value);
-                                            ?>
-                                            <label class="custom-control custom-switch custom-control-inline">
-                                            <input class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio"   name="urgencia" />
-                                            <span class="custom-control-label"><?php echo $label ?></span>
-                                            </label>
-                                            <?php
-                                                }
-                                                }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
                                         <label class="control-label" for="objeto">Objeto </label>
                                         <div id="ctrl-objeto-holder" class=" "> 
                                             <input id="ctrl-objeto"  value="<?php  echo $data['objeto']; ?>" type="text" placeholder="Ex: 2 canetas marcadoras"  name="objeto"  class="form-control " />
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class="control-label" for="valor">Valor estimado </label>
-                                            <div id="ctrl-valor-holder" class=" "> 
-                                                <input id="ctrl-valor"  value="<?php  echo $data['valor']; ?>" type="number" placeholder="Apenas numeros" step="any"  name="valor"  class="form-control " />
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label class="control-label" for="data">Data </label>
                                             <div id="ctrl-data-holder" class="input-group "> 
                                                 <input id="ctrl-data" class="form-control datepicker  datepicker"  value="<?php  echo $data['data']; ?>" type="datetime" name="data" placeholder="Entrar Data" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="d/m/Y" data-inline="false" data-no-calendar="false" data-mode="single" />
@@ -81,18 +52,18 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group col-md-8">
+                                            <label class="control-label" for="link_referencia">Link de Referencia </label>
+                                            <div id="ctrl-link_referencia-holder" class=" "> 
+                                                <input id="ctrl-link_referencia"  value="<?php  echo $data['link_referencia']; ?>" type="url" placeholder="https://"  name="link_referencia"  class="form-control " />
+                                            </div>
+                                            <small class="form-text">Caso o objeto seja específico ou você encontre um bom valor, deixe o link aqui</small>
+                                        </div>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label" for="observacoes">Observacoes </label>
                                         <div id="ctrl-observacoes-holder" class=" "> 
-                                            <textarea placeholder="Descreva observações e características do objeto a ser comprado" id="ctrl-observacoes"  rows="5" name="observacoes" class=" form-control"><?php  echo $data['observacoes']; ?></textarea>
-                                            <!--<div class="invalid-feedback animated bounceIn text-center">Por favor insira o texto</div>-->
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label" for="justificativa">Justificativa </label>
-                                        <div id="ctrl-justificativa-holder" class=" "> 
-                                            <textarea placeholder="Para que você precisa deste objeto?" id="ctrl-justificativa"  rows="5" name="justificativa" class=" form-control"><?php  echo $data['justificativa']; ?></textarea>
+                                            <textarea placeholder="Descreva observações e características do objeto a ser comprado" id="ctrl-observacoes"  rows="5" name="observacoes" class="htmleditor form-control"><?php  echo $data['observacoes']; ?></textarea>
                                             <!--<div class="invalid-feedback animated bounceIn text-center">Por favor insira o texto</div>-->
                                         </div>
                                     </div>

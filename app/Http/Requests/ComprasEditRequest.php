@@ -25,12 +25,10 @@ class ComprasEditRequest extends FormRequest
 		
         return [
             
-				"urgencia" => "nullable",
 				"objeto" => "nullable|string",
-				"valor" => "nullable|numeric",
 				"data" => "nullable|date",
+				"link_referencia" => "nullable|url",
 				"observacoes" => "nullable",
-				"justificativa" => "nullable",
 				"status" => "nullable",
             
         ];

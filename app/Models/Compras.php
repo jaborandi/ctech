@@ -28,7 +28,7 @@ class Compras extends Model
      * @var array
      */
 	protected $fillable = [
-		'urgencia','objeto','valor','data','observacoes','justificativa','status','adicionado_por'
+		'objeto','data','link_referencia','observacoes','status','adicionado_por'
 	];
 	
 
@@ -48,16 +48,17 @@ class Compras extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
+				objeto LIKE ?  OR 
 				status LIKE ?  OR 
 				urgencia LIKE ?  OR 
-				objeto LIKE ?  OR 
 				valor LIKE ?  OR 
 				observacoes LIKE ?  OR 
 				justificativa LIKE ?  OR 
-				adicionado_por LIKE ? 
+				adicionado_por LIKE ?  OR 
+				link_referencia LIKE ? 
 		)';
 		$search_params = [
-			"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+			"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 		];
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
@@ -72,10 +73,9 @@ class Compras extends Model
 	public static function listFields(){
 		return [ 
 			"id",
-			"status",
-			"urgencia",
 			"objeto",
-			"observacoes" 
+			"status",
+			"link_referencia" 
 		];
 	}
 	
@@ -88,10 +88,9 @@ class Compras extends Model
 	public static function exportListFields(){
 		return [ 
 			"id",
-			"status",
-			"urgencia",
 			"objeto",
-			"observacoes" 
+			"status",
+			"link_referencia" 
 		];
 	}
 	
@@ -104,13 +103,11 @@ class Compras extends Model
 	public static function viewFields(){
 		return [ 
 			"id",
-			"objeto",
-			"valor",
-			"data",
-			"urgencia",
-			"observacoes",
-			"justificativa",
 			"status",
+			"objeto",
+			"observacoes",
+			"data",
+			"link_referencia",
 			"adicionado_por" 
 		];
 	}
@@ -124,13 +121,11 @@ class Compras extends Model
 	public static function exportViewFields(){
 		return [ 
 			"id",
-			"objeto",
-			"valor",
-			"data",
-			"urgencia",
-			"observacoes",
-			"justificativa",
 			"status",
+			"objeto",
+			"observacoes",
+			"data",
+			"link_referencia",
 			"adicionado_por" 
 		];
 	}
@@ -144,12 +139,10 @@ class Compras extends Model
 	public static function editFields(){
 		return [ 
 			"id",
-			"urgencia",
 			"objeto",
-			"valor",
 			"data",
+			"link_referencia",
 			"observacoes",
-			"justificativa",
 			"status" 
 		];
 	}

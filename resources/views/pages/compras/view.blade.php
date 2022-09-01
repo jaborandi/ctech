@@ -14,7 +14,7 @@
             <div class="row justify-content-between">
                 <div class="col-12 col-md-auto " >
                     <div class=" h5 font-weight-bold text-primary" >
-                        Visão
+                        Pedido de compra
                     </div>
                 </div>
             </div>
@@ -41,26 +41,19 @@
                                     <!-- Table Body Start -->
                                     <div class="page-data">
                                         <!--PageComponentStart-->
-                                        <div class="border-top td-objeto p-2">
+                                        <div class="border-top td-status p-2">
                                             <div class="row align-items-center">
+                                                <div class="col-auto"><i class="material-icons ">timelapse</i></div>
                                                 <div class="col">
-                                                    <div class="text-muted"> Objeto</div>
+                                                    <div class="text-muted"> Status</div>
                                                     <div class="font-weight-bold">
-                                                        <?php echo  $data['objeto'] ; ?>
+                                                        <?php echo  $data['status'] ; ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="border-top td-valor p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Valor</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo to_currency( $data['valor'] , 'pt-BR'); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <strong style="padding-left:20px;padding-right:20px;"><?php echo $data['objeto']; ?></strong>
+                                        <p class="font-weight-light" style="padding-left:20px;padding-right:20px;"><?php echo $data['observacoes']; ?></p>
                                         <div class="border-top td-data p-2">
                                             <div class="row align-items-center">
                                                 <div class="col">
@@ -71,56 +64,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="border-top td-urgencia p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Urgencia</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['urgencia'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-observacoes p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Observacoes</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['observacoes'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-justificativa p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Justificativa</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['justificativa'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-status p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Status</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['status'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-adicionado_por p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Requisitado por</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['adicionado_por'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php if($data['link_referencia'] != '' AND $data['link_referencia'] != null){ ?>
+                                        <a href="<?php echo $data['link_referencia']; ?>" target="_blank">Link de Referência</a>
+                                        <?php } ?>
+                                        <br><strong>Requisitado por: </strong><?php echo $data['adicionado_por']; ?><br>
                                         <!--PageComponentEnd-->
                                         <div class="d-flex q-col-gutter-xs justify-btween">
                                             <div class="dropdown" >

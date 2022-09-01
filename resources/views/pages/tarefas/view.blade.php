@@ -45,44 +45,11 @@
                                         <p class="font-weight-light text-center"><?php echo $data['descricao']; ?></p>
                                         <br><br><h5>Dados Adicionais</h5>
                                         <strong>Prioridade:</strong> <?php echo $data['prioridade']; ?><br>
-                                        <div class="border-top td-fazer_ate p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Data limite da tarefa</div>
-                                                    <div class="font-weight-bold">
-                                                        <span title="<?php echo human_datetime($data['fazer_ate']); ?>" class="has-tooltip">
-                                                        <?php echo relative_date($data['fazer_ate']); ?>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <strong>Data Limite: </strong><?php echo $data['fazer_ate']; ?><br>
                                         <strong>Status: </strong><?php echo $data['status']; ?><br>
                                         <strong>Inserido por: </strong><?php echo $data['inserido_por']; ?><br>
-                                        <div class="border-top td-inserido_em p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Inserido Em</div>
-                                                    <div class="font-weight-bold">
-                                                        <span title="<?php echo human_datetime($data['inserido_em']); ?>" class="has-tooltip">
-                                                        <?php echo relative_date($data['inserido_em']); ?>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-atualizado_em p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Atualizado Em</div>
-                                                    <div class="font-weight-bold">
-                                                        <span title="<?php echo human_datetime($data['atualizado_em']); ?>" class="has-tooltip">
-                                                        <?php echo relative_date($data['atualizado_em']); ?>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <strong>Inserido em: </strong><?php echo $data['inserido_em']; ?>
+                                        <strong>Atualizado em: </strong><?php echo $data['atualizado_em']; ?>
                                         <div class="border-top td-feedback p-2">
                                             <div class="row align-items-center">
                                                 <div class="col">

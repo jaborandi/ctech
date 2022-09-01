@@ -35,10 +35,6 @@ class ComprasController extends Controller
 			$vals = $request->compras_status;
 			$query->whereIn("compras.status", $vals);
 		}
-		if($request->compras_urgencia){
-			$vals = $request->compras_urgencia;
-			$query->whereIn("compras.urgencia", $vals);
-		}
 		if($request->compras_data){
 			$vals = explode("-to-",$request->compras_data);
 			$fromDate = $vals[0] ?? null;

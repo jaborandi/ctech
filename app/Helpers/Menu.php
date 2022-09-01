@@ -111,26 +111,6 @@
 		],] ;
 	}
 	
-	public static function urgencia(){
-		return [
-		[
-			'value' => '1', 
-			'label' => "Baixa", 
-		],
-		[
-			'value' => '2', 
-			'label' => "Média", 
-		],
-		[
-			'value' => '3', 
-			'label' => "Alta", 
-		],
-		[
-			'value' => '4', 
-			'label' => "Máxima", 
-		],] ;
-	}
-	
 	public static function status(){
 		return [
 		[

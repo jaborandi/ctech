@@ -28,6 +28,76 @@
                     Adicionar nova 
                 </a>
             </div>
+            <div class="col-md-4 comp-grid" >
+                <button data-toggle="modal" data-target="#Modal121Page1" class="btn btn-primary"><i class='material-icons '>perm_data_setting</i>  Filtrar dados</button>
+                <div data-backdrop="true" class="modal fade" id="Modal121Page1" tabindex="-1" role="dialog" aria-labelledby="Modal1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle"><i class='material-icons '>perm_data_setting</i>  Opções de filtragem</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body p-0 reset-grids">
+                                <div  class="mb-3 card-4" >
+                                    <div class="container-fluid">
+                                        <div class="row ">
+                                            <div class="col-sm-12 comp-grid" >
+                                                <form method="get" action="" class="form">
+                                                    <div class="q-mb-sm q-pa-sm ">
+                                                        <label class="font-weight-bold p-2">Filtrar por disciplina</label>
+                                                        <div class="">
+                                                            <?php
+                                                                $options = Menu::atividades_disciplina();
+                                                                if(!empty($options)){
+                                                                foreach($options as $option){
+                                                                $value = $option['value'];
+                                                                $label = $option['label'];
+                                                                //check if current option is checked option
+                                                                $checked = Html::get_field_checked('atividades_disciplina', $value);
+                                                            ?>
+                                                            <label class="form-check">
+                                                            <input class="form-check-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" name="atividades_disciplina"  />
+                                                            <span class="form-check-label"><?php echo $label ?></span>
+                                                            </label>
+                                                            <?php
+                                                                }
+                                                                }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" "><br><br></div>
+                                                    <div class="q-mb-sm q-pa-sm ">
+                                                        <label class="font-weight-bold p-2">Filtrar por duração</label>
+                                                        <div class="">
+                                                            <?php 
+                                                                $to = 240;
+                                                                $from =  0;
+                                                                $range_field =  get_value('atividades_duracao');
+                                                                if($range_field){
+                                                                $range = explode('-', $range_field);
+                                                                $from = $range[0];
+                                                                $to = $range[1] ?? null;
+                                                                }
+                                                            ?>
+                                                            <input class="ion-range" type="text" data-from="<?php echo $from ?>" data-to="<?php echo $to ?>" data-force_edge="true" data-prefix="" data-postfix="min"  name="atividades_duracao" data-step="10" data-type="double" data-min="0"   data-max="240"   data-grid="true" data-grid-snap="true" / > 
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="form-group text-center">
+                                                        <button class="btn btn-primary">Filtrar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-3 " >
                 <form  class="search" action="{{ url()->current() }}" method="get">
                     <input type="hidden" name="page" value="1" />
@@ -48,53 +118,7 @@
 <div  class="" >
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-md-3 card-4 comp-grid" >
-                <form method="get" action="" class="form">
-                    <div class="q-mb-sm q-pa-sm ">
-                        <label class="font-weight-bold p-2">Filtrar por disciplina</label>
-                        <div class="">
-                            <?php
-                                $options = Menu::atividades_disciplina();
-                                if(!empty($options)){
-                                foreach($options as $option){
-                                $value = $option['value'];
-                                $label = $option['label'];
-                                //check if current option is checked option
-                                $checked = Html::get_field_checked('atividades_disciplina', $value);
-                            ?>
-                            <label class="form-check">
-                            <input class="form-check-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" name="atividades_disciplina"  />
-                            <span class="form-check-label"><?php echo $label ?></span>
-                            </label>
-                            <?php
-                                }
-                                }
-                            ?>
-                        </div>
-                    </div>
-                    <div class="q-mb-sm q-pa-sm ">
-                        <label class="font-weight-bold p-2">Filtrar por duração</label>
-                        <div class="">
-                            <?php 
-                                $to = 240;
-                                $from =  0;
-                                $range_field =  get_value('atividades_duracao');
-                                if($range_field){
-                                $range = explode('-', $range_field);
-                                $from = $range[0];
-                                $to = $range[1] ?? null;
-                                }
-                            ?>
-                            <input class="ion-range" type="text" data-from="<?php echo $from ?>" data-to="<?php echo $to ?>" data-force_edge="true" data-prefix="" data-postfix="min"  name="atividades_duracao" data-step="10" data-type="double" data-min="0"   data-max="240"   data-grid="true" data-grid-snap="true" / > 
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="form-group text-center">
-                        <button class="btn btn-primary">Filtrar</button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-9 comp-grid" >
+            <div class="col-md-12 comp-grid" >
                 <?php Html::display_page_errors($errors); ?>
                 <div class="filter-tags mb-2">
                     <?php
