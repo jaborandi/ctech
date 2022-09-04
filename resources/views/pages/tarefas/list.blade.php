@@ -1,5 +1,10 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->can("tarefas/add");
+    $can_edit = $user->can("tarefas/edit");
+    $can_view = $user->can("tarefas/view");
+    $can_delete = $user->can("tarefas/delete");
     $field_name = request()->segment(3);
     $field_value = request()->segment(4);
     $total_records = $records->total();
@@ -23,10 +28,12 @@
                     </div>
                 </div>
                 <div class="col-md-auto " >
+                    <?php if($can_add){ ?>
                     <a  class="btn btn-primary btn-block" href="<?php print_link("tarefas/add") ?>" >
                     <i class="material-icons">add</i>                               
                     Adicionar tarefa 
                 </a>
+                <?php } ?>
             </div>
             <div class="col-md-4 comp-grid" >
                 <button data-toggle="modal" data-target="#Modal121Page1" class="btn btn-primary"><i class='material-icons '>perm_data_setting</i>  Filtrar dados</button>

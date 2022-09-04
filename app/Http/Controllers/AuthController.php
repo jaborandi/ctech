@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
 use App\Http\Requests\UsersRegisterRequest;
+use App\Models\permissions;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;

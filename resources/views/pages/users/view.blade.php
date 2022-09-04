@@ -1,5 +1,10 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->can("users/add");
+    $can_edit = $user->can("users/edit");
+    $can_view = $user->can("users/view");
+    $can_delete = $user->can("users/delete");
     $pageTitle = "Visão";
 ?>
 @extends($layout)
@@ -88,12 +93,16 @@
                                                 <i class="material-icons">menu</i> 
                                                 </button>
                                                 <ul class="dropdown-menu">
+                                                    <?php if($can_edit){ ?>
                                                     <a class="dropdown-item "   href="<?php print_link("users/edit/$rec_id"); ?>">
                                                     <i class="material-icons">edit</i> Edit
                                                 </a>
+                                                <?php } ?>
+                                                <?php if($can_delete){ ?>
                                                 <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("users/delete/$rec_id"); ?>">
                                                 <i class="material-icons">clear</i> Delete
                                             </a>
+                                            <?php } ?>
                                         </ul>
                                     </div>
                                 </div>

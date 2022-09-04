@@ -25,6 +25,30 @@ class ComponentsData{
 	
 
 	/**
+     * permission_id_option_list Model Action
+     * @return array
+     */
+	function permission_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM permissions";
+		$query_params = [];
+		$arr = DB::select(DB::raw($sqltext), $query_params);
+		return $arr;
+	}
+	
+
+	/**
+     * role_id_option_list Model Action
+     * @return array
+     */
+	function role_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM roles";
+		$query_params = [];
+		$arr = DB::select(DB::raw($sqltext), $query_params);
+		return $arr;
+	}
+	
+
+	/**
      * usuarios_option_list Model Action
      * @return array
      */

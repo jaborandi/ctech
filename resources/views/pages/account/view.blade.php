@@ -1,5 +1,10 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->can("users/add");
+    $can_edit = $user->can("users/edit");
+    $can_view = $user->can("users/view");
+    $can_delete = $user->can("users/delete");
     $pageTitle = "Minha conta";
 ?>
 @extends($layout)

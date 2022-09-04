@@ -65,7 +65,7 @@
                                     <div class="form-group col-md-6">
                                         <label class="control-label" for="data_inicio">Data Inicio </label>
                                         <div id="ctrl-data_inicio-holder" class="input-group "> 
-                                            <input id="ctrl-data_inicio" class="form-control datepicker  datepicker"  value="<?php echo get_value('data_inicio') ?>" type="datetime" name="data_inicio" placeholder="Clique para selecionar" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                            <input id="ctrl-data_inicio" class="form-control datepicker  datepicker"  value="<?php echo get_value('data_inicio') ?>" type="datetime" name="data_inicio" placeholder="Clique para selecionar" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="d/m/Y" data-inline="false" data-no-calendar="false" data-mode="single" />
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="material-icons">date_range</i></span>
                                             </div>
@@ -83,7 +83,7 @@
                                     <div class="form-group col-md-6">
                                         <label class="control-label" for="data_termino">Data Termino </label>
                                         <div id="ctrl-data_termino-holder" class="input-group "> 
-                                            <input id="ctrl-data_termino" class="form-control datepicker  datepicker"  value="<?php echo get_value('data_termino') ?>" type="datetime" name="data_termino" placeholder="Clique para selecionar" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                            <input id="ctrl-data_termino" class="form-control datepicker  datepicker"  value="<?php echo get_value('data_termino') ?>" type="datetime" name="data_termino" placeholder="Clique para selecionar" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="d/m/Y" data-inline="false" data-no-calendar="false" data-mode="single" />
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="material-icons">date_range</i></span>
                                             </div>

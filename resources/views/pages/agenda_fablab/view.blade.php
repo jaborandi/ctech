@@ -1,5 +1,10 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->can("agenda_fablab/add");
+    $can_edit = $user->can("agenda_fablab/edit");
+    $can_view = $user->can("agenda_fablab/view");
+    $can_delete = $user->can("agenda_fablab/delete");
     $pageTitle = "Visão";
 ?>
 @extends($layout)
@@ -14,7 +19,7 @@
             <div class="row justify-content-between">
                 <div class="col-12 col-md-auto " >
                     <div class=" h5 font-weight-bold text-primary" >
-                        Visão
+                        Detalhes da agenda
                     </div>
                 </div>
             </div>
@@ -41,90 +46,16 @@
                                     <!-- Table Body Start -->
                                     <div class="page-data">
                                         <!--PageComponentStart-->
-                                        <div class="border-top td-id p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Id</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['id'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-titulo p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Titulo</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['titulo'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-observacoes p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Observacoes</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['observacoes'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-confirmacao p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Confirmacao</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['confirmacao'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-data_inicio p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Data Inicio</div>
-                                                    <div class="font-weight-bold">
-                                                        <span title="<?php echo human_datetime($data['data_inicio']); ?>" class="has-tooltip">
-                                                        <?php echo relative_date($data['data_inicio']); ?>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-hora_inicio p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Hora Inicio</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['hora_inicio'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-data_termino p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Data Termino</div>
-                                                    <div class="font-weight-bold">
-                                                        <span title="<?php echo human_datetime($data['data_termino']); ?>" class="has-tooltip">
-                                                        <?php echo relative_date($data['data_termino']); ?>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top td-hora_termino p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Hora Termino</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['hora_termino'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <h3 class='text-center'><?php echo $data['titulo']; ?></h3><br>
+                                        <p class="font-weight-light text-center"><?php echo $data['observacoes']; ?></p>
+                                        <?php if($data['confirmacao'] == '#6c757d'){ ?>
+                                        <p class='text-center' style='color: #6c757d'>AGUARDANDO CONFIRMAÇÃO</p>
+                                        <?php } else if($data['confirmacao'] == '#28a745'){?>
+                                        <p class='text-center' style='color: #28a745'>CONFIRMADO</p>
+                                        <?php } else { ?>
+                                        <p class='text-center' style='color: #dc3545'>CANCELADO</p>
+                                        <?php } ?>
+                                        <p class='text-center'><i class="material-icons ">today</i>Agendado para o dia <strong><?php echo format_date( $data['data_inicio'] , 'd/m/Y'); ?> às <?php echo format_date( $data['hora_inicio'] , 'H:i'); ?> horas</strong></p>
                                         <!--PageComponentEnd-->
                                         <div class="d-flex q-col-gutter-xs justify-btween">
                                             <div class="dropdown" >
@@ -132,12 +63,16 @@
                                                 <i class="material-icons">menu</i> 
                                                 </button>
                                                 <ul class="dropdown-menu">
+                                                    <?php if($can_edit){ ?>
                                                     <a class="dropdown-item "   href="<?php print_link("agenda_fablab/edit/$rec_id"); ?>">
                                                     <i class="material-icons">edit</i> Edit
                                                 </a>
+                                                <?php } ?>
+                                                <?php if($can_delete){ ?>
                                                 <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("agenda_fablab/delete/$rec_id"); ?>">
                                                 <i class="material-icons">clear</i> Delete
                                             </a>
+                                            <?php } ?>
                                         </ul>
                                     </div>
                                 </div>

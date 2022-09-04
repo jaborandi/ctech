@@ -61,6 +61,9 @@
     </a>
     <h5 class="user-name">Oi 
     <?php echo $user->UserName(); ?>
+    <?php $userRoles = $user->getRoleNames()->toArray(); ?>
+    <br />
+    <small class="text-muted text-capitalize"> <?php echo implode(", ", $userRoles); ?></small>
     </h5>
     <div class="dropdown menu-dropdown">
         <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

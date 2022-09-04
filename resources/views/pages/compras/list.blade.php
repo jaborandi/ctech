@@ -1,5 +1,10 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->can("compras/add");
+    $can_edit = $user->can("compras/edit");
+    $can_view = $user->can("compras/view");
+    $can_delete = $user->can("compras/delete");
     $field_name = request()->segment(3);
     $field_value = request()->segment(4);
     $total_records = $records->total();
@@ -23,10 +28,12 @@
                     </div>
                 </div>
                 <div class="col-md-auto " >
+                    <?php if($can_add){ ?>
                     <a  class="btn btn-primary btn-block" href="<?php print_link("compras/add") ?>" >
                     <i class="material-icons">add</i>                               
                     Adicionar novo 
                 </a>
+                <?php } ?>
             </div>
             <div class="col-md-4 comp-grid" >
                 <button data-toggle="modal" data-target="#Modal121Page1" class="btn btn-primary"><i class='material-icons '>perm_data_setting</i>  Filtrar dados</button>
@@ -205,12 +212,16 @@
                                         <i class="material-icons">menu</i> 
                                         </button>
                                         <ul class="dropdown-menu">
+                                            <?php if($can_view){ ?>
                                             <a class="dropdown-item page-modal"   href="<?php print_link("compras/view/$rec_id"); ?>">
                                             <i class="material-icons">visibility</i> Ver
                                         </a>
+                                        <?php } ?>
+                                        <?php if($can_edit){ ?>
                                         <a class="dropdown-item page-modal"   href="<?php print_link("compras/edit/$rec_id"); ?>">
                                         <i class="material-icons">edit</i> Atualizar
                                     </a>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </div>

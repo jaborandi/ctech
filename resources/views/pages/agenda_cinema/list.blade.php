@@ -1,5 +1,10 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->can("agenda_cinema/add");
+    $can_edit = $user->can("agenda_cinema/edit");
+    $can_view = $user->can("agenda_cinema/view");
+    $can_delete = $user->can("agenda_cinema/delete");
     $field_name = request()->segment(3);
     $field_value = request()->segment(4);
     $total_records = $records->total();
@@ -23,10 +28,12 @@
                     </div>
                 </div>
                 <div class="col-md-auto " >
+                    <?php if($can_add){ ?>
                     <a  class="btn btn-primary btn-block" href="<?php print_link("agenda_cinema/add") ?>" >
                     <i class="material-icons">add</i>                               
                     Adicionar novo 
                 </a>
+                <?php } ?>
             </div>
             <div class="col-md-3 " >
                 <form  class="search" action="{{ url()->current() }}" method="get">
@@ -51,7 +58,7 @@
             <div class="col-md-12 comp-grid" >
                 <?php Html::display_page_errors($errors); ?>
                 @include("pages.agenda_cinema-list-page-calendar")
-                <div  class=" page-content" >
+                <div  class="d-none page-content" >
                     <div id="agenda_cinema-list-records">
                         <div class="row">
                             <div class="col">
@@ -60,12 +67,14 @@
                                     <table class="table table-hover table-striped table-sm text-left">
                                         <thead class="table-header ">
                                             <tr>
+                                                <?php if($can_delete){ ?>
                                                 <th class="td-checkbox">
                                                 <label class="custom-control custom-checkbox custom-control-inline">
                                                 <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                 <span class="custom-control-label"></span>
                                                 </label>
                                                 </th>
+                                                <?php } ?>
                                                 <th class="td-id" > Id</th>
                                                 <th class="td-titulo" > Titulo</th>
                                                 <th class="td-observacoes" > Observacoes</th>
@@ -89,12 +98,14 @@
                                                 $counter++;
                                             ?>
                                             <tr>
+                                                <?php if($can_delete){ ?>
                                                 <td class=" td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                     <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
                                                     <span class="custom-control-label"></span>
                                                     </label>
                                                 </td>
+                                                <?php } ?>
                                                 <!--PageComponentStart-->
                                                 <td class="td-id">
                                                     <a href="<?php print_link("agenda_cinema/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
@@ -131,15 +142,21 @@
                                                         <i class="material-icons">menu</i> 
                                                         </button>
                                                         <ul class="dropdown-menu">
+                                                            <?php if($can_view){ ?>
                                                             <a class="dropdown-item "   href="<?php print_link("agenda_cinema/view/$rec_id"); ?>">
                                                             <i class="material-icons">visibility</i> View
                                                         </a>
+                                                        <?php } ?>
+                                                        <?php if($can_edit){ ?>
                                                         <a class="dropdown-item "   href="<?php print_link("agenda_cinema/edit/$rec_id"); ?>">
                                                         <i class="material-icons">edit</i> Edit
                                                     </a>
+                                                    <?php } ?>
+                                                    <?php if($can_delete){ ?>
                                                     <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("agenda_cinema/delete/$rec_id"); ?>">
                                                     <i class="material-icons">clear</i> Delete
                                                 </a>
+                                                <?php } ?>
                                             </ul>
                                         </div>
                                     </td>
@@ -173,10 +190,12 @@
                         <div class="row justify-content-center">    
                             <div class="col-md-auto justify-content-center">    
                                 <div class="p-3 d-flex justify-content-between">    
+                                    <?php if($can_delete){ ?>
                                     <button data-prompt-msg="Tem certeza de que deseja excluir esses registros?
                                     " data-display-style="modal" data-url="<?php print_link("agenda_cinema/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                                     <i class="material-icons">clear</i> Excluir selecionado
                                     </button>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col">   

@@ -1,5 +1,10 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->can("atividades/add");
+    $can_edit = $user->can("atividades/edit");
+    $can_view = $user->can("atividades/view");
+    $can_delete = $user->can("atividades/delete");
     $pageTitle = "Visão";
 ?>
 @extends($layout)
@@ -64,12 +69,16 @@
                                         </div>
                                         <!--PageComponentEnd-->
                                         <div class="d-flex q-col-gutter-xs justify-btween">
+                                            <?php if($can_edit){ ?>
                                             <a class="mx-1 btn btn-sm btn-success has-tooltip "   title="Editar" href="<?php print_link("atividades/edit/$rec_id"); ?>">
                                             <i class="material-icons">edit</i> Editar
                                         </a>
+                                        <?php } ?>
+                                        <?php if($can_delete){ ?>
                                         <a class="mx-1 btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" title="Editar" href="<?php print_link("atividades/delete/$rec_id"); ?>">
                                         <i class="material-icons">clear</i> Apagar
                                     </a>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <!-- Table Body End -->

@@ -2,6 +2,7 @@
 		@section('plugins')
 			<link rel="stylesheet" href="{{ asset('css/fullcalendar-main.min.css') }}" />
 			<script type="text/javascript" src="{{ asset('js/fullcalendar-main.min.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('js/pt-br.js') }}"></script>
 		@endsection
 		<?php
 			$events = [];
@@ -36,6 +37,7 @@
 				var calendarEl = document.getElementById('calendar');
 				calendar = new FullCalendar.Calendar(calendarEl, {
 					initialView: 'dayGridMonth',
+					locale: 'pt-br',
 					headerToolbar: {
 						center: 'timeGridWeek,dayGridMonth,listWeek',
 						right: 'today,prev,next',
@@ -44,7 +46,7 @@
 					selectable: true,
 					events: <?php echo json_encode($events); ?>,
 					eventClick: function(info) {
-						var pageUrl = "/agenda_cinema/view/" + info.event.id;
+						var pageUrl = "<?php print_link("agenda_cinema/view/") ?>/" + info.event.id;
 						var modal = $('#main-page-modal');
 						modal.modal({show:true});
 						modal.find('.modal-body').html(loadingIndicator).load(pageUrl, function(responseText, status, req){

@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Mail;
 /**
  * All routes which requires auth
  */
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'rbac'])->group(function () {
 		
 	Route::get('home', 'HomeController@index')->name('home');
 
@@ -93,6 +93,63 @@ Route::middleware(['auth'])->group(function () {
 	Route::any('compras/edit/{rec_id}', 'ComprasController@edit')->name('compras.edit');	
 	Route::get('compras/delete/{rec_id}', 'ComprasController@delete');
 
+/* routes for Model_Has_Permissions Controller */	
+	Route::get('model_has_permissions', 'Model_Has_PermissionsController@index')->name('model_has_permissions.index');
+	Route::get('model_has_permissions/index', 'Model_Has_PermissionsController@index')->name('model_has_permissions.index');
+	Route::get('model_has_permissions/index/{filter?}/{filtervalue?}', 'Model_Has_PermissionsController@index')->name('model_has_permissions.index');	
+	Route::get('model_has_permissions/view/{rec_id}', 'Model_Has_PermissionsController@view')->name('model_has_permissions.view');	
+	Route::get('model_has_permissions/add', 'Model_Has_PermissionsController@add')->name('model_has_permissions.add');
+	Route::post('model_has_permissions/store', 'Model_Has_PermissionsController@store')->name('model_has_permissions.store');
+		
+	Route::any('model_has_permissions/edit/{rec_id}', 'Model_Has_PermissionsController@edit')->name('model_has_permissions.edit');	
+	Route::get('model_has_permissions/delete/{rec_id}', 'Model_Has_PermissionsController@delete');
+
+/* routes for Model_Has_Roles Controller */	
+	Route::get('model_has_roles', 'Model_Has_RolesController@index')->name('model_has_roles.index');
+	Route::get('model_has_roles/index', 'Model_Has_RolesController@index')->name('model_has_roles.index');
+	Route::get('model_has_roles/index/{filter?}/{filtervalue?}', 'Model_Has_RolesController@index')->name('model_has_roles.index');	
+	Route::get('model_has_roles/view/{rec_id}', 'Model_Has_RolesController@view')->name('model_has_roles.view');	
+	Route::get('model_has_roles/add', 'Model_Has_RolesController@add')->name('model_has_roles.add');
+	Route::post('model_has_roles/store', 'Model_Has_RolesController@store')->name('model_has_roles.store');
+		
+	Route::any('model_has_roles/edit/{rec_id}', 'Model_Has_RolesController@edit')->name('model_has_roles.edit');	
+	Route::get('model_has_roles/delete/{rec_id}', 'Model_Has_RolesController@delete');
+
+/* routes for Permissions Controller */	
+	Route::get('permissions', 'PermissionsController@index')->name('permissions.index');
+	Route::get('permissions/index', 'PermissionsController@index')->name('permissions.index');
+	Route::get('permissions/index/{filter?}/{filtervalue?}', 'PermissionsController@index')->name('permissions.index');	
+	Route::get('permissions/view/{rec_id}', 'PermissionsController@view')->name('permissions.view');
+	Route::get('permissions/masterdetail/{rec_id}', 'PermissionsController@masterDetail')->name('permissions.masterdetail');	
+	Route::get('permissions/add', 'PermissionsController@add')->name('permissions.add');
+	Route::post('permissions/store', 'PermissionsController@store')->name('permissions.store');
+		
+	Route::any('permissions/edit/{rec_id}', 'PermissionsController@edit')->name('permissions.edit');	
+	Route::get('permissions/delete/{rec_id}', 'PermissionsController@delete');
+
+/* routes for Role_Has_Permissions Controller */	
+	Route::get('role_has_permissions', 'Role_Has_PermissionsController@index')->name('role_has_permissions.index');
+	Route::get('role_has_permissions/index', 'Role_Has_PermissionsController@index')->name('role_has_permissions.index');
+	Route::get('role_has_permissions/index/{filter?}/{filtervalue?}', 'Role_Has_PermissionsController@index')->name('role_has_permissions.index');	
+	Route::get('role_has_permissions/view/{rec_id}', 'Role_Has_PermissionsController@view')->name('role_has_permissions.view');	
+	Route::get('role_has_permissions/add', 'Role_Has_PermissionsController@add')->name('role_has_permissions.add');
+	Route::post('role_has_permissions/store', 'Role_Has_PermissionsController@store')->name('role_has_permissions.store');
+		
+	Route::any('role_has_permissions/edit/{rec_id}', 'Role_Has_PermissionsController@edit')->name('role_has_permissions.edit');	
+	Route::get('role_has_permissions/delete/{rec_id}', 'Role_Has_PermissionsController@delete');
+
+/* routes for Roles Controller */	
+	Route::get('roles', 'RolesController@index')->name('roles.index');
+	Route::get('roles/index', 'RolesController@index')->name('roles.index');
+	Route::get('roles/index/{filter?}/{filtervalue?}', 'RolesController@index')->name('roles.index');	
+	Route::get('roles/view/{rec_id}', 'RolesController@view')->name('roles.view');
+	Route::get('roles/masterdetail/{rec_id}', 'RolesController@masterDetail')->name('roles.masterdetail');	
+	Route::get('roles/add', 'RolesController@add')->name('roles.add');
+	Route::post('roles/store', 'RolesController@store')->name('roles.store');
+		
+	Route::any('roles/edit/{rec_id}', 'RolesController@edit')->name('roles.edit');	
+	Route::get('roles/delete/{rec_id}', 'RolesController@delete');
+
 /* routes for Tarefas Controller */	
 	Route::get('tarefas', 'TarefasController@index')->name('tarefas.index');
 	Route::get('tarefas/index', 'TarefasController@index')->name('tarefas.index');
@@ -126,6 +183,18 @@ Route::middleware(['auth'])->group(function () {
 Route::get('componentsdata/tags_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->tags_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/permission_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->permission_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/role_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->role_id_option_list($request);
 	}
 )->middleware(['auth']);
 	

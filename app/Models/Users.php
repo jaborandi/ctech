@@ -3,9 +3,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 class Users extends Authenticatable 
 {
 	use Notifiable;
+	use HasRoles;
 	
 
 	/**
@@ -184,6 +186,9 @@ class Users extends Authenticatable
 	public function UserPhoto(){
 		return $this->image;
 	}
+	public function UserRole(){
+		return $this->user_role_id;
+	}
 	
 
 	/**
@@ -194,5 +199,15 @@ class Users extends Authenticatable
 	public function sendPasswordResetNotification($token)
 	{
 		$this->notify(new \App\Notifications\ResetPassword($token));
+	}
+	public function canView($path)
+	{
+		$arrPaths = explode("/", strtolower($path));
+		$page = $arrPaths[0] ?? "home";
+		$action = $arrPaths[1] ?? "list";
+		if($action == "index"){
+			$action = "list";
+		}
+		return $this->can("$page/$action");
 	}
 }
