@@ -16,7 +16,7 @@ class RolesAndPermissionsSeeder extends Seeder
 			'home/list', 'account/list', 'account/edit', 'atividades/list', 'atividades/view', 'atividades/add', 'atividades/store', 'atividades/edit', 'atividades/delete', 'agenda_fablab/list', 'agenda_fablab/view', 'agenda_fablab/add', 'agenda_fablab/store', 'agenda_fablab/edit', 'agenda_fablab/delete', 'agenda_cinema/list', 'agenda_cinema/view', 'agenda_cinema/add', 'agenda_cinema/store', 'agenda_cinema/edit', 'agenda_cinema/delete', 'compras/list', 'compras/view', 'compras/add', 'compras/store', 'compras/edit', 'compras/delete', 'tarefas/list', 'tarefas/view', 'tarefas/add', 'tarefas/store', 'tarefas/edit', 'tarefas/delete', 'tarefas/atribuidas'
 		], 
 		'escola' => [
-			'agenda_cinema/list', 'agenda_cinema/view', 'agenda_cinema/add', 'agenda_cinema/store', 'agenda_cinema/edit', 'agenda_cinema/delete', 'agenda_cinema/importdata', 'agenda_fablab/list', 'agenda_fablab/view', 'agenda_fablab/add', 'agenda_fablab/store', 'agenda_fablab/edit', 'agenda_fablab/delete', 'agenda_fablab/importdata'
+			'home/list', 'agenda_cinema/list', 'agenda_cinema/view', 'agenda_cinema/add', 'agenda_cinema/store', 'agenda_cinema/edit', 'agenda_cinema/delete', 'agenda_cinema/importdata', 'agenda_fablab/list', 'agenda_fablab/view', 'agenda_fablab/add', 'agenda_fablab/store', 'agenda_fablab/edit', 'agenda_fablab/delete', 'agenda_fablab/importdata', 'account/list', 'account/edit'
 		]
 	];
     public function run()

@@ -15,9 +15,12 @@ class HomeController extends Controller{
      */
 	function index(){
 		$user = auth()->user();
-		
-		return view("pages.home.index");
-
+		if($user->hasRole('escola')){
+			return view("pages.home.escola");
+		}
+		else{
+			return view("pages.home.index");
+		}
 	}
 	
 }
