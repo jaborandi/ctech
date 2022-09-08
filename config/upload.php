@@ -39,13 +39,18 @@
 
 		"arquivos" => [
 			"file_name_type" => "random",
-			"extensions" => "mp3,mp4,webm,wav,avi,mpg,mpeg",
+			"extensions" => "jpg,png,gif,jpeg,docx,doc,xls,xlsx,xml,csv,pdf,xps,zip,gzip,rar,7z,mp3,mp4,webm,wav,avi,mpg,mpeg,ai,psd,svg,eps",
 			"limit" => 200,
 			"max_file_size" => 100, //in mb
 			"return_full_path" => false,
 			"filename_prefix" => "",
 			"upload_dir" => "uploads/files",
-			
+			"image_resize" => [ 
+				"small" => ["width" => 100, "height" => 100, "mode" => "cover"], 
+				"medium" => ["width" => 480, "height" => 480, "mode" => "contain"], 
+				"large" => ["width" => 1024, "height" => 760, "mode" => "contain"]
+			],
+
 		],
 
 		"image" => [

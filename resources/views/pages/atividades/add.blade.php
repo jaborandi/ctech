@@ -111,7 +111,7 @@
                                 <div class="form-group ">
                                     <label class="control-label" for="arquivos">Arquivos </label>
                                     <div id="ctrl-arquivos-holder" class=" "> 
-                                        <div class="dropzone " input="#ctrl-arquivos" fieldname="arquivos" uploadurl="{{ url('fileuploader/upload/arquivos') }}"    data-multiple="true" dropmsg="Escolha arquivos ou solte-os aqui"    btntext="procurar" extensions=".mp3,.mp4,.webm,.wav,.avi,.mpg,.mpeg" filesize="100" maximum="200">
+                                        <div class="dropzone " input="#ctrl-arquivos" fieldname="arquivos" uploadurl="{{ url('fileuploader/upload/arquivos') }}"    data-multiple="true" dropmsg="Escolha arquivos ou solte-os aqui"    btntext="procurar" extensions=".jpg,.png,.gif,.jpeg,.docx,.doc,.xls,.xlsx,.xml,.csv,.pdf,.xps,.zip,.gzip,.rar,.7z,.mp3,.mp4,.webm,.wav,.avi,.mpg,.mpeg,.ai,.psd,.svg,.eps" filesize="100" maximum="200">
                                             <input name="arquivos" id="ctrl-arquivos" class="dropzone-input form-control" value="<?php echo get_value('arquivos') ?>" type="text"  />
                                             <!--<div class="invalid-feedback animated bounceIn text-center">Por favor, escolha um arquivo</div>-->
                                             <div class="dz-file-limit animated bounceIn text-center text-danger"></div>
