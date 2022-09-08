@@ -61,9 +61,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col">
                                                     <div class="text-muted"> Arquivos</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['arquivos'] ; ?>
-                                                    </div>
+                                                    <div class="font-weight-bold"><?php Html :: page_link_file($data['arquivos']); ?></div>
                                                 </div>
                                             </div>
                                         </div>
