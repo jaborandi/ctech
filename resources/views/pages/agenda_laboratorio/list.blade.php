@@ -1,16 +1,16 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
     //check if current user role is allowed access to the pages
-    $can_add = $user->can("users/add");
-    $can_edit = $user->can("users/edit");
-    $can_view = $user->can("users/view");
-    $can_delete = $user->can("users/delete");
+    $can_add = $user->can("agenda_laboratorio/add");
+    $can_edit = $user->can("agenda_laboratorio/edit");
+    $can_view = $user->can("agenda_laboratorio/view");
+    $can_delete = $user->can("agenda_laboratorio/delete");
     $field_name = request()->segment(3);
     $field_value = request()->segment(4);
     $total_records = $records->total();
     $limit = $records->perPage();
     $record_count = count($records);
-    $pageTitle = "Users";
+    $pageTitle = "Agenda Laboratorio";
 ?>
 @extends($layout)
 @section('title', $pageTitle)
@@ -24,12 +24,12 @@
             <div class="row justify-content-between">
                 <div class="col-12 col-md-auto " >
                     <div class=" h5 font-weight-bold text-primary" >
-                        Users
+                        Agenda Laboratorio
                     </div>
                 </div>
                 <div class="col-md-auto " >
                     <?php if($can_add){ ?>
-                    <a  class="btn btn-primary btn-block" href="<?php print_link("users/add") ?>" >
+                    <a  class="btn btn-primary btn-block" href="<?php print_link("agenda_laboratorio/add") ?>" >
                     <i class="material-icons">add</i>                               
                     Adicionar novo 
                 </a>
@@ -57,12 +57,13 @@
         <div class="row ">
             <div class="col-md-12 comp-grid" >
                 <?php Html::display_page_errors($errors); ?>
-                <div  class=" page-content" >
-                    <div id="users-list-records">
+                @include("pages.agenda_laboratorio-list-page-calendar")
+                <div  class="d-none page-content" >
+                    <div id="agenda_laboratorio-list-records">
                         <div class="row">
                             <div class="col">
                                 <div id="page-main-content" class="table-responsive">
-                                    <?php Html::page_bread_crumb("/users/", $field_name, $field_value); ?>
+                                    <?php Html::page_bread_crumb("/agenda_laboratorio/", $field_name, $field_value); ?>
                                     <table class="table table-hover table-striped table-sm text-left">
                                         <thead class="table-header ">
                                             <tr>
@@ -74,13 +75,15 @@
                                                 </label>
                                                 </th>
                                                 <?php } ?>
-                                                <th class="td-id" > Id</th>
-                                                <th class="td-name" > Name</th>
-                                                <th class="td-image" > Image</th>
-                                                <th class="td-phone" > Phone</th>
-                                                <th class="td-email" > Email</th>
-                                                <th class="td-cor_postit" > Cor Postit</th>
-                                                <th class="td-cor_letra" > Cor Letra</th>
+                                                <th class="td-titulo" > Titulo</th>
+                                                <th class="td-numero_pessoas" > Numero Pessoas</th>
+                                                <th class="td-confirmacao" > Confirmacao</th>
+                                                <th class="td-data_inicio" > Data Inicio</th>
+                                                <th class="td-hora_inicio" > Hora Inicio</th>
+                                                <th class="td-data_termino" > Data Termino</th>
+                                                <th class="td-hora_termino" > Hora Termino</th>
+                                                <th class="td-inserido_por" > Inserido Por</th>
+                                                <th class="td-observacoes" > Observacoes</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -105,28 +108,36 @@
                                                 </td>
                                                 <?php } ?>
                                                 <!--PageComponentStart-->
-                                                <td class="td-id">
-                                                    <a href="<?php print_link("users/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
+                                                <td class="td-titulo">
+                                                    <?php echo  $data['titulo'] ; ?>
                                                 </td>
-                                                <td class="td-name">
-                                                    <?php echo  $data['name'] ; ?>
+                                                <td class="td-numero_pessoas">
+                                                    <?php echo  $data['numero_pessoas'] ; ?>
                                                 </td>
-                                                <td class="td-image">
-                                                    <?php 
-                                                        Html :: page_img($data['image'],50,50, "medium", "large", 1); 
-                                                    ?>
+                                                <td class="td-confirmacao">
+                                                    <?php echo  $data['confirmacao'] ; ?>
                                                 </td>
-                                                <td class="td-phone">
-                                                    <a href="<?php print_link("tel:$data[phone]") ?>"><?php echo $data['phone']; ?></a>
+                                                <td class="td-data_inicio">
+                                                    <span title="<?php echo human_datetime($data['data_inicio']); ?>" class="has-tooltip">
+                                                    <?php echo relative_date($data['data_inicio']); ?>
+                                                    </span>
                                                 </td>
-                                                <td class="td-email">
-                                                    <a href="<?php print_link("mailto:$data[email]") ?>"><?php echo $data['email']; ?></a>
+                                                <td class="td-hora_inicio">
+                                                    <?php echo  $data['hora_inicio'] ; ?>
                                                 </td>
-                                                <td class="td-cor_postit">
-                                                    <?php echo  $data['cor_postit'] ; ?>
+                                                <td class="td-data_termino">
+                                                    <span title="<?php echo human_datetime($data['data_termino']); ?>" class="has-tooltip">
+                                                    <?php echo relative_date($data['data_termino']); ?>
+                                                    </span>
                                                 </td>
-                                                <td class="td-cor_letra">
-                                                    <?php echo  $data['cor_letra'] ; ?>
+                                                <td class="td-hora_termino">
+                                                    <?php echo  $data['hora_termino'] ; ?>
+                                                </td>
+                                                <td class="td-inserido_por">
+                                                    <?php echo  $data['inserido_por'] ; ?>
+                                                </td>
+                                                <td class="td-observacoes">
+                                                    <?php echo  $data['observacoes'] ; ?>
                                                 </td>
                                                 <!--PageComponentEnd-->
                                                 <td class="td-btn">
@@ -136,17 +147,17 @@
                                                         </button>
                                                         <ul class="dropdown-menu">
                                                             <?php if($can_view){ ?>
-                                                            <a class="dropdown-item "   href="<?php print_link("users/view/$rec_id"); ?>">
+                                                            <a class="dropdown-item "   href="<?php print_link("agenda_laboratorio/view/$rec_id"); ?>">
                                                             <i class="material-icons">visibility</i> View
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_edit){ ?>
-                                                        <a class="dropdown-item "   href="<?php print_link("users/edit/$rec_id"); ?>">
+                                                        <a class="dropdown-item "   href="<?php print_link("agenda_laboratorio/edit/$rec_id"); ?>">
                                                         <i class="material-icons">edit</i> Edit
                                                     </a>
                                                     <?php } ?>
                                                     <?php if($can_delete){ ?>
-                                                    <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("users/delete/$rec_id"); ?>">
+                                                    <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("agenda_laboratorio/delete/$rec_id"); ?>">
                                                     <i class="material-icons">clear</i> Delete
                                                 </a>
                                                 <?php } ?>
@@ -185,7 +196,7 @@
                                 <div class="p-3 d-flex justify-content-between">    
                                     <?php if($can_delete){ ?>
                                     <button data-prompt-msg="Tem certeza de que deseja excluir esses registros?
-                                    " data-display-style="modal" data-url="<?php print_link("users/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
+                                    " data-display-style="modal" data-url="<?php print_link("agenda_laboratorio/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                                     <i class="material-icons">clear</i> Excluir selecionado
                                     </button>
                                     <?php } ?>

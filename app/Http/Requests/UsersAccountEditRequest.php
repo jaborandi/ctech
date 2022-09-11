@@ -28,6 +28,8 @@ class UsersAccountEditRequest extends FormRequest
 				"name" => "nullable|string",
 				"image" => "nullable",
 				"phone" => "nullable|string",
+				"cor_postit" => "nullable|string",
+				"cor_letra" => "nullable|string",
             
         ];
     }

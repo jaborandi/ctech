@@ -1,12 +1,12 @@
 <?php 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Agenda_CinemaAddRequest;
-use App\Http\Requests\Agenda_CinemaEditRequest;
-use App\Models\Agenda_Cinema;
+use App\Http\Requests\Agenda_LaboratorioAddRequest;
+use App\Http\Requests\Agenda_LaboratorioEditRequest;
+use App\Models\Agenda_Laboratorio;
 use Illuminate\Http\Request;
 use Exception;
-class Agenda_CinemaController extends Controller
+class Agenda_LaboratorioController extends Controller
 {
 	
 
@@ -18,20 +18,20 @@ class Agenda_CinemaController extends Controller
      * @return \Illuminate\View\View
      */
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
-		$view = "pages.agenda_cinema.list";
-		$query = Agenda_Cinema::query();
+		$view = "pages.agenda_laboratorio.list";
+		$query = Agenda_Laboratorio::query();
 		$limit = $request->limit ?? 10;
 		if($request->search){
 			$search = trim($request->search);
-			Agenda_Cinema::search($query, $search); // search table records
+			Agenda_Laboratorio::search($query, $search); // search table records
 		}
-		$orderby = $request->orderby ?? "agenda_cinema.id";
+		$orderby = $request->orderby ?? "agenda_laboratorio.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field
 		}
-		$records = $query->paginate($limit, Agenda_Cinema::listFields());
+		$records = $query->paginate($limit, Agenda_Laboratorio::listFields());
 		return $this->renderView($view, compact("records"));
 	}
 	
@@ -42,9 +42,9 @@ class Agenda_CinemaController extends Controller
      * @return \Illuminate\View\View
      */
 	function view($rec_id = null){
-		$query = Agenda_Cinema::query();
-		$record = $query->findOrFail($rec_id, Agenda_Cinema::viewFields());
-		return $this->renderView("pages.agenda_cinema.view", ["data" => $record]);
+		$query = Agenda_Laboratorio::query();
+		$record = $query->findOrFail($rec_id, Agenda_Laboratorio::viewFields());
+		return $this->renderView("pages.agenda_laboratorio.view", ["data" => $record]);
 	}
 	
 
@@ -53,7 +53,7 @@ class Agenda_CinemaController extends Controller
      * @return \Illuminate\View\View
      */
 	function add(){
-		return $this->renderView("pages.agenda_cinema.add");
+		return $this->renderView("pages.agenda_laboratorio.add");
 	}
 	
 
@@ -61,14 +61,14 @@ class Agenda_CinemaController extends Controller
      * Save form record to the table
      * @return \Illuminate\Http\Response
      */
-	function store(Agenda_CinemaAddRequest $request){
+	function store(Agenda_LaboratorioAddRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
 		$modeldata['inserido_por'] = auth()->user()->name;
 		
-		//save Agenda_Cinema record
-		$record = Agenda_Cinema::create($modeldata);
+		//save Agenda_Laboratorio record
+		$record = Agenda_Laboratorio::create($modeldata);
 		$rec_id = $record->id;
-		return $this->redirect("agenda_cinema", "Registro adicionado com sucesso");
+		return $this->redirect("agenda_laboratorio", "Registro adicionado com sucesso");
 	}
 	
 
@@ -77,15 +77,15 @@ class Agenda_CinemaController extends Controller
 	 * @param string $rec_id //select record by table primary key
      * @return \Illuminate\View\View;
      */
-	function edit(Agenda_CinemaEditRequest $request, $rec_id = null){
-		$query = Agenda_Cinema::query();
-		$record = $query->findOrFail($rec_id, Agenda_Cinema::editFields());
+	function edit(Agenda_LaboratorioEditRequest $request, $rec_id = null){
+		$query = Agenda_Laboratorio::query();
+		$record = $query->findOrFail($rec_id, Agenda_Laboratorio::editFields());
 		if ($request->isMethod('post')) {
 			$modeldata = $this->normalizeFormData($request->validated());
 			$record->update($modeldata);
-			return $this->redirect("agenda_cinema", "Registro atualizado com sucesso");
+			return $this->redirect("agenda_laboratorio", "Registro atualizado com sucesso");
 		}
-		return $this->renderView("pages.agenda_cinema.edit", ["data" => $record, "rec_id" => $rec_id]);
+		return $this->renderView("pages.agenda_laboratorio.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}
 	
 
@@ -98,7 +98,7 @@ class Agenda_CinemaController extends Controller
      */
 	function delete(Request $request, $rec_id = null){
 		$arr_id = explode(",", $rec_id);
-		$query = Agenda_Cinema::query();
+		$query = Agenda_Laboratorio::query();
 		$query->whereIn("id", $arr_id);
 		$query->delete();
 		$redirectUrl = $request->redirect ?? url()->previous();

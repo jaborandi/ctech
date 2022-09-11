@@ -1,16 +1,41 @@
 @inject('comp_model', 'App\Models\ComponentsData')
-<?php 
-    $pageTitle = "Home";
+<?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->can("tarefas/add");
+    $can_edit = $user->can("tarefas/edit");
+    $can_view = $user->can("tarefas/view");
+    $can_delete = $user->can("tarefas/delete");
+    $field_name = request()->segment(3);
+    $field_value = request()->segment(4);
+    $total_records = $records->total();
+    $limit = $records->perPage();
+    $record_count = count($records);
+    $pageTitle = "Tarefas";
 ?>
 @extends($layout)
 @section('title', $pageTitle)
 @section('content')
-<div>
+<section class="page" data-page-type="list" data-page-url="{{ url()->full() }}">
     <div  class="mb-3" >
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 comp-grid" >
-                    <div class=" "><br><br></div>
+                    <div class=" "><br><br>
+                        <meta http-equiv="refresh" content="5">
+                        <style>
+                        #topbar {
+                        display:none !important;
+                        }
+                        #sidebar {
+                        display:none !important;
+                        }
+                        .footer {
+                        display:none !important;
+                        }
+                        #main-content{
+                        position: relative !important;
+                        }
+                    </style></div>
                     <div class=" h5 font-weight-bold text-center" >
                         Tarefas do time nessa semana
                         <div class="text-muted text-small"> Clique nos cards para visualizar ou atualizar </div>
@@ -86,87 +111,31 @@
             </div>
         </div>
     </div>
-    <div  class="mb-3" >
+    <div  class="" >
         <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-12 comp-grid" >
-                    <div class=" "><br><br></div>
-                    <div class=" h5 font-weight-bold text-center" >
-                        Resumo das minhas tarefas
-                        <div class="text-muted text-small"> Todas as tarefas atribuídas a mim </div>
-                    </div>
-                    <hr />
+            <div class="row ">
+                <div class="col-md-12 comp-grid" >
+                    <?php Html::display_page_errors($errors); ?>
                 </div>
-                <div class="col-3 comp-grid" >
-                    <?php $rec_count = $comp_model->getcount_afazer();  ?>
-                    <a class="animated zoomIn record-count "  href='<?php print_link("tarefas?tarefas_status%5B%5D=AGUARDANDO&tarefas_fazer_ate=") ?>' style="background:#FFCC00;
-                    color:white;">
-                    <div class="row gutter-sm">
-                        <div class="col-auto" style="opacity: 1;">
-                            <i class="material-icons" style="color:white">access_alarm</i>
-                        </div>
-                        <div class="col">
-                            <div class="flex-column justify-content align-center">
-                                <div class="title">A fazer</div>
-                                <small class=""></small>
-                            </div>
-                            <h4 class="value"><?php echo $rec_count; ?></h4>
-                        </div>
-                    </div>
-                </a>
             </div>
-            <div class="col-3 comp-grid" >
-                <?php $rec_count = $comp_model->getcount_fazendo();  ?>
-                <a class="animated zoomIn record-count "  href='<?php print_link("tarefas?tarefas_status%5B%5D=EM+PROGRESSO&tarefas_fazer_ate=") ?>' style="background:#82B1FF;
-                color:white;">
-                <div class="row gutter-sm">
-                    <div class="col-auto" style="opacity: 1;">
-                        <i class="material-icons" style="color:white">assignment</i>
-                    </div>
-                    <div class="col">
-                        <div class="flex-column justify-content align-center">
-                            <div class="title">Fazendo</div>
-                            <small class=""></small>
-                        </div>
-                        <h4 class="value"><?php echo $rec_count; ?></h4>
-                    </div>
-                </div>
-            </a>
         </div>
-        <div class="col-3 comp-grid" >
-            <?php $rec_count = $comp_model->getcount_feitas();  ?>
-            <a class="animated zoomIn record-count "  href='<?php print_link("tarefas?tarefas_status%5B%5D=CONCLUÍDA&tarefas_fazer_ate=") ?>' style="background: #4caf50;
-            color: white;">
-            <div class="row gutter-sm">
-                <div class="col-auto" style="opacity: 1;">
-                    <i class="material-icons" style="color:white">check_circle</i>
-                </div>
-                <div class="col">
-                    <div class="flex-column justify-content align-center">
-                        <div class="title">Feitas</div>
-                        <small class=""></small>
-                    </div>
-                    <h4 class="value"><?php echo $rec_count; ?></h4>
-                </div>
-            </div>
-        </a>
     </div>
-</div>
-</div>
-</div>
-</div>
+</section>
 @endsection
 @section('pagecss')
 <style>
+
 </style>
 @endsection
 @section('pagejs')
 <script>
-    /*
-    * Page Custom Javascript | Jquery codes
-    */
-    //$(document).ready(function(){
-    //  
-    //});
+	/*
+	* Page Custom Javascript | Jquery codes
+	*/
+
+	//$(document).ready(function(){
+	//	
+	//});
 </script>
+
 @endsection

@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Mail;
 
 
 	
+	Route::get('tarefas/visaotarefas', 'TarefasController@visaotarefas');
+	Route::get('tarefas/visaotarefas/{filter?}/{filtervalue?}', 'TarefasController@visaotarefas');	
 	Route::post('auth/login', 'AuthController@login')->name('auth.login');
 	Route::get('auth/password/forgotpassword', 'AuthController@showForgotPassword')->name('password.forgotpassword');
 	Route::post('auth/password/sendemail', 'AuthController@sendPasswordResetLink')->name('password.email');
@@ -70,6 +72,17 @@ Route::middleware(['auth', 'rbac'])->group(function () {
 		
 	Route::any('agenda_fablab/edit/{rec_id}', 'Agenda_FablabController@edit')->name('agenda_fablab.edit');	
 	Route::get('agenda_fablab/delete/{rec_id}', 'Agenda_FablabController@delete');
+
+/* routes for Agenda_Laboratorio Controller */	
+	Route::get('agenda_laboratorio', 'Agenda_LaboratorioController@index')->name('agenda_laboratorio.index');
+	Route::get('agenda_laboratorio/index', 'Agenda_LaboratorioController@index')->name('agenda_laboratorio.index');
+	Route::get('agenda_laboratorio/index/{filter?}/{filtervalue?}', 'Agenda_LaboratorioController@index')->name('agenda_laboratorio.index');	
+	Route::get('agenda_laboratorio/view/{rec_id}', 'Agenda_LaboratorioController@view')->name('agenda_laboratorio.view');	
+	Route::get('agenda_laboratorio/add', 'Agenda_LaboratorioController@add')->name('agenda_laboratorio.add');
+	Route::post('agenda_laboratorio/store', 'Agenda_LaboratorioController@store')->name('agenda_laboratorio.store');
+		
+	Route::any('agenda_laboratorio/edit/{rec_id}', 'Agenda_LaboratorioController@edit')->name('agenda_laboratorio.edit');	
+	Route::get('agenda_laboratorio/delete/{rec_id}', 'Agenda_LaboratorioController@delete');
 
 /* routes for Atividades Controller */	
 	Route::get('atividades', 'AtividadesController@index')->name('atividades.index');
@@ -127,6 +140,17 @@ Route::middleware(['auth', 'rbac'])->group(function () {
 	Route::any('permissions/edit/{rec_id}', 'PermissionsController@edit')->name('permissions.edit');	
 	Route::get('permissions/delete/{rec_id}', 'PermissionsController@delete');
 
+/* routes for Projetos Controller */	
+	Route::get('projetos', 'ProjetosController@index')->name('projetos.index');
+	Route::get('projetos/index', 'ProjetosController@index')->name('projetos.index');
+	Route::get('projetos/index/{filter?}/{filtervalue?}', 'ProjetosController@index')->name('projetos.index');	
+	Route::get('projetos/view/{rec_id}', 'ProjetosController@view')->name('projetos.view');	
+	Route::get('projetos/add', 'ProjetosController@add')->name('projetos.add');
+	Route::post('projetos/store', 'ProjetosController@store')->name('projetos.store');
+		
+	Route::any('projetos/edit/{rec_id}', 'ProjetosController@edit')->name('projetos.edit');	
+	Route::get('projetos/delete/{rec_id}', 'ProjetosController@delete');
+
 /* routes for Role_Has_Permissions Controller */	
 	Route::get('role_has_permissions', 'Role_Has_PermissionsController@index')->name('role_has_permissions.index');
 	Route::get('role_has_permissions/index', 'Role_Has_PermissionsController@index')->name('role_has_permissions.index');
@@ -161,7 +185,9 @@ Route::middleware(['auth', 'rbac'])->group(function () {
 	Route::any('tarefas/edit/{rec_id}', 'TarefasController@edit')->name('tarefas.edit');Route::any('tarefas/editfield/{rec_id}', 'TarefasController@editfield');	
 	Route::get('tarefas/delete/{rec_id}', 'TarefasController@delete');	
 	Route::get('tarefas/atribuidas', 'TarefasController@atribuidas');
-	Route::get('tarefas/atribuidas/{filter?}/{filtervalue?}', 'TarefasController@atribuidas');
+	Route::get('tarefas/atribuidas/{filter?}/{filtervalue?}', 'TarefasController@atribuidas');	
+	Route::get('tarefas/kanban', 'TarefasController@kanban');
+	Route::get('tarefas/kanban/{filter?}/{filtervalue?}', 'TarefasController@kanban');
 
 /* routes for Users Controller */	
 	Route::get('users', 'UsersController@index')->name('users.index');
@@ -198,6 +224,12 @@ Route::get('componentsdata/role_id_option_list',  function(Request $request){
 	}
 )->middleware(['auth']);
 	
+Route::get('componentsdata/categoria_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->categoria_option_list($request);
+	}
+)->middleware(['auth']);
+	
 Route::get('componentsdata/usuarios_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->usuarios_option_list($request);
@@ -216,21 +248,21 @@ Route::get('componentsdata/users_email_value_exist',  function(Request $request)
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/getcount_tarefasaguardando',  function(Request $request){
+Route::get('componentsdata/getcount_afazer',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
-		return $compModel->getcount_tarefasaguardando($request);
+		return $compModel->getcount_afazer($request);
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/getcount_tarefasemprogresso',  function(Request $request){
+Route::get('componentsdata/getcount_fazendo',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
-		return $compModel->getcount_tarefasemprogresso($request);
+		return $compModel->getcount_fazendo($request);
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/getcount_tarefas_2',  function(Request $request){
+Route::get('componentsdata/getcount_feitas',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
-		return $compModel->getcount_tarefas_2($request);
+		return $compModel->getcount_feitas($request);
 	}
 )->middleware(['auth']);
 

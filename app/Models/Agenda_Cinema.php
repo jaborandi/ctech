@@ -28,7 +28,7 @@ class Agenda_Cinema extends Model
      * @var array
      */
 	protected $fillable = [
-		'confirmacao','titulo','data_inicio','hora_inicio','data_termino','hora_termino','observacoes'
+		'confirmacao','titulo','data_inicio','hora_inicio','data_termino','hora_termino','observacoes','inserido_por'
 	];
 	
 
@@ -50,10 +50,11 @@ class Agenda_Cinema extends Model
 		$search_condition = '(
 				titulo LIKE ?  OR 
 				observacoes LIKE ?  OR 
-				confirmacao LIKE ? 
+				confirmacao LIKE ?  OR 
+				inserido_por LIKE ? 
 		)';
 		$search_params = [
-			"%$text%","%$text%","%$text%"
+			"%$text%","%$text%","%$text%","%$text%"
 		];
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
@@ -74,7 +75,8 @@ class Agenda_Cinema extends Model
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
-			"hora_termino" 
+			"hora_termino",
+			"inserido_por" 
 		];
 	}
 	
@@ -93,7 +95,8 @@ class Agenda_Cinema extends Model
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
-			"hora_termino" 
+			"hora_termino",
+			"inserido_por" 
 		];
 	}
 	
@@ -112,7 +115,8 @@ class Agenda_Cinema extends Model
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
-			"hora_termino" 
+			"hora_termino",
+			"inserido_por" 
 		];
 	}
 	
@@ -131,7 +135,8 @@ class Agenda_Cinema extends Model
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
-			"hora_termino" 
+			"hora_termino",
+			"inserido_por" 
 		];
 	}
 	
@@ -150,7 +155,8 @@ class Agenda_Cinema extends Model
 			"hora_inicio",
 			"data_termino",
 			"hora_termino",
-			"observacoes" 
+			"observacoes",
+			"inserido_por" 
 		];
 	}
 }

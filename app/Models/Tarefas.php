@@ -120,17 +120,24 @@ class Tarefas extends Model
      */
 	public static function viewFields(){
 		return [ 
-			"id",
-			"titulo",
-			"descricao",
-			"prioridade",
-			"fazer_ate",
-			"usuarios",
-			"status",
-			"inserido_por",
-			"inserido_em",
-			"atualizado_em",
-			"feedback" 
+			"tarefas.id AS id",
+			"tarefas.titulo AS titulo",
+			"tarefas.descricao AS descricao",
+			"tarefas.prioridade AS prioridade",
+			"tarefas.fazer_ate AS fazer_ate",
+			"tarefas.usuarios AS usuarios",
+			"tarefas.status AS status",
+			"tarefas.inserido_por AS inserido_por",
+			"tarefas.inserido_em AS inserido_em",
+			"tarefas.atualizado_em AS atualizado_em",
+			"tarefas.feedback AS feedback",
+			"users.id AS users_id",
+			"users.name AS users_name",
+			"users.image AS users_image",
+			"users.phone AS users_phone",
+			"users.email AS users_email",
+			"users.cor_postit AS users_cor_postit",
+			"users.cor_letra AS users_cor_letra" 
 		];
 	}
 	
@@ -142,17 +149,24 @@ class Tarefas extends Model
      */
 	public static function exportViewFields(){
 		return [ 
-			"id",
-			"titulo",
-			"descricao",
-			"prioridade",
-			"fazer_ate",
-			"usuarios",
-			"status",
-			"inserido_por",
-			"inserido_em",
-			"atualizado_em",
-			"feedback" 
+			"tarefas.id AS id",
+			"tarefas.titulo AS titulo",
+			"tarefas.descricao AS descricao",
+			"tarefas.prioridade AS prioridade",
+			"tarefas.fazer_ate AS fazer_ate",
+			"tarefas.usuarios AS usuarios",
+			"tarefas.status AS status",
+			"tarefas.inserido_por AS inserido_por",
+			"tarefas.inserido_em AS inserido_em",
+			"tarefas.atualizado_em AS atualizado_em",
+			"tarefas.feedback AS feedback",
+			"users.id AS users_id",
+			"users.name AS users_name",
+			"users.image AS users_image",
+			"users.phone AS users_phone",
+			"users.email AS users_email",
+			"users.cor_postit AS users_cor_postit",
+			"users.cor_letra AS users_cor_letra" 
 		];
 	}
 	
@@ -209,6 +223,112 @@ class Tarefas extends Model
 			"prioridade",
 			"descricao",
 			"usuarios",
+			"inserido_por",
+			"inserido_em",
+			"atualizado_por",
+			"atualizado_em",
+			"feedback" 
+		];
+	}
+	
+
+	/**
+     * return kanban page fields of the model.
+     * 
+     * @return array
+     */
+	public static function kanbanFields(){
+		return [ 
+			"tarefas.id AS id",
+			"tarefas.titulo AS titulo",
+			"tarefas.fazer_ate AS fazer_ate",
+			"tarefas.prioridade AS prioridade",
+			"tarefas.descricao AS descricao",
+			"tarefas.usuarios AS usuarios",
+			"tarefas.status AS status",
+			"tarefas.inserido_por AS inserido_por",
+			"tarefas.inserido_em AS inserido_em",
+			"tarefas.atualizado_por AS atualizado_por",
+			"tarefas.atualizado_em AS atualizado_em",
+			"tarefas.feedback AS feedback",
+			"users.id AS users_id",
+			"users.name AS users_name",
+			"users.image AS users_image",
+			"users.phone AS users_phone",
+			"users.email AS users_email",
+			"users.cor_postit AS users_cor_postit",
+			"users.cor_letra AS users_cor_letra" 
+		];
+	}
+	
+
+	/**
+     * return exportKanban page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportKanbanFields(){
+		return [ 
+			"tarefas.id AS id",
+			"tarefas.titulo AS titulo",
+			"tarefas.fazer_ate AS fazer_ate",
+			"tarefas.prioridade AS prioridade",
+			"tarefas.descricao AS descricao",
+			"tarefas.usuarios AS usuarios",
+			"tarefas.status AS status",
+			"tarefas.inserido_por AS inserido_por",
+			"tarefas.inserido_em AS inserido_em",
+			"tarefas.atualizado_por AS atualizado_por",
+			"tarefas.atualizado_em AS atualizado_em",
+			"tarefas.feedback AS feedback",
+			"users.id AS users_id",
+			"users.name AS users_name",
+			"users.image AS users_image",
+			"users.phone AS users_phone",
+			"users.email AS users_email",
+			"users.cor_postit AS users_cor_postit",
+			"users.cor_letra AS users_cor_letra" 
+		];
+	}
+	
+
+	/**
+     * return visaotarefas page fields of the model.
+     * 
+     * @return array
+     */
+	public static function visaotarefasFields(){
+		return [ 
+			"id",
+			"titulo",
+			"fazer_ate",
+			"prioridade",
+			"descricao",
+			"usuarios",
+			"status",
+			"inserido_por",
+			"inserido_em",
+			"atualizado_por",
+			"atualizado_em",
+			"feedback" 
+		];
+	}
+	
+
+	/**
+     * return exportVisaotarefas page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportVisaotarefasFields(){
+		return [ 
+			"id",
+			"titulo",
+			"fazer_ate",
+			"prioridade",
+			"descricao",
+			"usuarios",
+			"status",
 			"inserido_por",
 			"inserido_em",
 			"atualizado_por",

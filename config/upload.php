@@ -38,7 +38,7 @@
 		],
 
 		"arquivos" => [
-			"file_name_type" => "random",
+			"file_name_type" => "original",
 			"extensions" => "jpg,png,gif,jpeg,docx,doc,xls,xlsx,xml,csv,pdf,xps,zip,gzip,rar,7z,mp3,mp4,webm,wav,avi,mpg,mpeg,ai,psd,svg,eps",
 			"limit" => 200,
 			"max_file_size" => 100, //in mb

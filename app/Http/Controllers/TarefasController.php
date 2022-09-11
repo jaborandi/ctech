@@ -5,6 +5,7 @@ use App\Http\Requests\TarefasAddRequest;
 use App\Http\Requests\TarefasEditRequest;
 use App\Models\Tarefas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Exception;
 class TarefasController extends Controller
 {
@@ -67,6 +68,7 @@ class TarefasController extends Controller
      */
 	function view($rec_id = null){
 		$query = Tarefas::query();
+		$query->join("users", "tarefas.usuarios", "=", "users.id");
 		$record = $query->findOrFail($rec_id, Tarefas::viewFields());
 		return $this->renderView("pages.tarefas.view", ["data" => $record]);
 	}
@@ -171,6 +173,60 @@ class TarefasController extends Controller
 			}
 		}
 		$records = $query->paginate($limit, Tarefas::atribuidasFields());
+		return $this->renderView($view, compact("records"));
+	}
+	
+
+	/**
+     * List table records
+	 * @param  \Illuminate\Http\Request
+     * @param string $fieldname //filter records by a table field
+     * @param string $fieldvalue //filter value
+     * @return \Illuminate\View\View
+     */
+	function kanban(Request $request, $fieldname = null , $fieldvalue = null){
+		$view = "pages.tarefas.kanban";
+		$query = Tarefas::query();
+		$limit = $request->limit ?? 10;
+		if($request->search){
+			$search = trim($request->search);
+			Tarefas::search($query, $search); // search table records
+		}
+		$query->join("users", "tarefas.usuarios", "=", "users.id");
+		$orderby = $request->orderby ?? "tarefas.id";
+		$ordertype = $request->ordertype ?? "desc";
+		$query->orderBy($orderby, $ordertype);
+		$query->where(DB::Raw("week(fazer_ate)"), "=" , DB::Raw("week(curdate())"));
+		if($fieldname){
+			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		$records = $query->paginate($limit, Tarefas::kanbanFields());
+		return $this->renderView($view, compact("records"));
+	}
+	
+
+	/**
+     * List table records
+	 * @param  \Illuminate\Http\Request
+     * @param string $fieldname //filter records by a table field
+     * @param string $fieldvalue //filter value
+     * @return \Illuminate\View\View
+     */
+	function visaotarefas(Request $request, $fieldname = null , $fieldvalue = null){
+		$view = "pages.tarefas.visaotarefas";
+		$query = Tarefas::query();
+		$limit = $request->limit ?? 10;
+		if($request->search){
+			$search = trim($request->search);
+			Tarefas::search($query, $search); // search table records
+		}
+		$orderby = $request->orderby ?? "tarefas.id";
+		$ordertype = $request->ordertype ?? "desc";
+		$query->orderBy($orderby, $ordertype);
+		if($fieldname){
+			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		$records = $query->paginate($limit, Tarefas::visaotarefasFields());
 		return $this->renderView($view, compact("records"));
 	}
 }

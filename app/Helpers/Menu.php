@@ -17,15 +17,27 @@
 		],
 		
 		[
+			'path' => 'projetos',
+			'label' => "Projetos", 
+			'icon' => '<i class="material-icons ">book</i>'
+		],
+		
+		[
 			'path' => 'agenda_fablab',
 			'label' => "Agenda Fablab", 
-			'icon' => '<i class="material-icons ">event</i>'
+			'icon' => '<i class="material-icons ">wb_incandescent</i>'
 		],
 		
 		[
 			'path' => 'agenda_cinema',
 			'label' => "Agenda Cinema", 
-			'icon' => '<i class="material-icons ">event_note</i>'
+			'icon' => '<i class="material-icons ">local_movies</i>'
+		],
+		
+		[
+			'path' => 'agenda_laboratorio',
+			'label' => "Agenda Laboratorio", 
+			'icon' => '<i class="material-icons ">computer</i>'
 		],
 		
 		[

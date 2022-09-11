@@ -1,10 +1,10 @@
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
     //check if current user role is allowed access to the pages
-    $can_add = $user->can("agenda_cinema/add");
-    $can_edit = $user->can("agenda_cinema/edit");
-    $can_view = $user->can("agenda_cinema/view");
-    $can_delete = $user->can("agenda_cinema/delete");
+    $can_add = $user->can("agenda_laboratorio/add");
+    $can_edit = $user->can("agenda_laboratorio/edit");
+    $can_view = $user->can("agenda_laboratorio/view");
+    $can_delete = $user->can("agenda_laboratorio/delete");
     $pageTitle = "Visão";
 ?>
 @extends($layout)
@@ -55,7 +55,9 @@
                                         <?php } else { ?>
                                         <p class='text-center' style='color: #dc3545'>CANCELADO</p>
                                         <?php } ?>
-                                        <p class='text-center'><i class="material-icons ">today</i>Agendado para o dia <strong><?php echo format_date( $data['data_inicio'] , 'd/m/Y'); ?> às <?php echo format_date( $data['hora_inicio'] , 'H:i'); ?> horas</strong><br><br><strong>Agendado por: </strong><?php echo $data['inserido_por']; ?></p>
+                                        <p class='text-center'><i class="material-icons ">today</i>Agendado para o dia <strong><?php echo format_date( $data['data_inicio'] , 'd/m/Y'); ?> às <?php echo format_date( $data['hora_inicio'] , 'H:i'); ?> horas</strong><br>
+                                        <strong>Número de pessoas: </strong><?php echo $data['numero_pessoas']; ?>
+                                        <br><strong>Agendado por: </strong><?php echo $data['inserido_por']; ?></p>
                                         <!--PageComponentEnd-->
                                         <div class="d-flex q-col-gutter-xs justify-btween">
                                             <div class="dropdown" >
@@ -64,13 +66,13 @@
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <?php if($can_edit){ ?>
-                                                    <a class="dropdown-item page-modal"   href="<?php print_link("agenda_cinema/edit/$rec_id"); ?>">
-                                                    <i class="material-icons">edit</i> Editar
+                                                    <a class="dropdown-item "   href="<?php print_link("agenda_laboratorio/edit/$rec_id"); ?>">
+                                                    <i class="material-icons">edit</i> Edit
                                                 </a>
                                                 <?php } ?>
                                                 <?php if($can_delete){ ?>
-                                                <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("agenda_cinema/delete/$rec_id"); ?>">
-                                                <i class="material-icons">clear</i> Apagar
+                                                <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("agenda_laboratorio/delete/$rec_id"); ?>">
+                                                <i class="material-icons">clear</i> Delete
                                             </a>
                                             <?php } ?>
                                         </ul>

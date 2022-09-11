@@ -47,73 +47,89 @@
                                     <div class="page-data">
                                         <!--PageComponentStart-->
                                         <h3 class='text-center'><?php echo $data['titulo']; ?></h3><br>
-                                        <p class="font-weight-light text-center"><?php echo $data['descricao']; ?></p>
+                                        <?php echo $data['descricao']; ?>
                                         <br><br><h5>Dados Adicionais</h5>
-                                        <strong>Prioridade:</strong> <?php echo $data['prioridade']; ?><br>
-                                        <strong>Data Limite: </strong><?php echo $data['fazer_ate']; ?><br>
-                                        <strong>Status: </strong><?php echo $data['status']; ?><br>
-                                        <strong>Inserido por: </strong><?php echo $data['inserido_por']; ?><br>
-                                        <strong>Inserido em: </strong><?php echo $data['inserido_em']; ?>
-                                        <strong>Atualizado em: </strong><?php echo $data['atualizado_em']; ?>
-                                        <div class="border-top td-feedback p-2">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <div class="text-muted"> Feedback</div>
-                                                    <div class="font-weight-bold">
-                                                        <?php echo  $data['feedback'] ; ?>
+                                        <strong>Atribuída para: </strong>
+                                        <?php 
+                                            Html :: page_img($data['users_image'],60,60, "", "", 1); 
+                                            ?> <?php echo $data['users_name']; ?><br>
+                                            <strong>Prioridade:</strong> <?php echo $data['prioridade']; ?><br>
+                                            <strong>Data Limite: </strong><?php echo $data['fazer_ate']; ?><br>
+                                            <strong>Status: </strong><?php echo $data['status']; ?><br>
+                                            <strong>Inserido por: </strong><?php echo $data['inserido_por']; ?><br>
+                                            <strong>Inserido em: </strong><?php echo $data['inserido_em']; ?><br>
+                                            <strong>Atualizado em: </strong><?php echo $data['atualizado_em']; ?>
+                                            <div class="border-top td-feedback p-2">
+                                                <div class="row align-items-center">
+                                                    <div class="col">
+                                                        <div class="text-muted"> Feedback</div>
+                                                        <div class="font-weight-bold">
+                                                            <?php echo  $data['feedback'] ; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!--PageComponentEnd-->
-                                        <div class="d-flex q-col-gutter-xs justify-btween">
-                                            <div class="dropdown" >
-                                                <button data-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
-                                                <i class="material-icons">menu</i> 
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <?php if($can_edit){ ?>
-                                                    <a class="dropdown-item "   href="<?php print_link("tarefas/edit/$rec_id"); ?>">
-                                                    <i class="material-icons">edit</i> Edit
+                                            <!--PageComponentEnd-->
+                                            <div class="d-flex q-col-gutter-xs justify-btween">
+                                                <?php if($data['usuarios'] == auth()->user()->id){ ?>
+                                                <div class="dropdown" >
+                                                    <button data-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
+                                                    <i class="material-icons">menu</i> 
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <?php if($can_edit){ ?>
+                                                        <a class="dropdown-item page-modal"   href="<?php print_link("tarefas/edit/$rec_id"); ?>">
+                                                        <i class="material-icons">edit</i> Edit
+                                                    </a>
+                                                    <?php } ?>
+                                                    <?php if($can_delete){ ?>
+                                                    <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("tarefas/delete/$rec_id"); ?>">
+                                                    <i class="material-icons">clear</i> Delete
                                                 </a>
-                                                <?php } ?>
-                                                <?php if($can_delete){ ?>
-                                                <a class="dropdown-item record-delete-btn" data-prompt-msg="Tem certeza de que deseja excluir este registro?" data-display-style="modal" href="<?php print_link("tarefas/delete/$rec_id"); ?>">
-                                                <i class="material-icons">clear</i> Delete
-                                            </a>
-                                            <?php } ?>
-                                        </ul>
+                                                <?php }} ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- Table Body End -->
                             </div>
-                            <!-- Table Body End -->
                         </div>
                     </div>
+                    <?php
+                        }
+                        else{
+                    ?>
+                    <!-- Empty Record Message -->
+                    <div class="text-muted p-3">
+                        <i class="material-icons">block</i> Nenhum Registro Encontrado
+                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
-                <?php
-                    }
-                    else{
-                ?>
-                <!-- Empty Record Message -->
-                <div class="text-muted p-3">
-                    <i class="material-icons">block</i> Nenhum Registro Encontrado
-                </div>
-                <?php
-                    }
-                ?>
             </div>
         </div>
     </div>
-</div>
 </div>
 </section>
 @endsection
 @section('pagecss')
 <style>
 
+</style><style>
+
 </style>
 @endsection
 @section('pagejs')
+<script>
+	/*
+	* Page Custom Javascript | Jquery codes
+	*/
+
+	//$(document).ready(function(){
+	//	
+	//});
+</script>
 <script>
 	/*
 	* Page Custom Javascript | Jquery codes

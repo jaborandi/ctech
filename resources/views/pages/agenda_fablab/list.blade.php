@@ -82,6 +82,7 @@
                                                 <th class="td-hora_inicio" > Hora Inicio</th>
                                                 <th class="td-data_termino" > Data Termino</th>
                                                 <th class="td-hora_termino" > Hora Termino</th>
+                                                <th class="td-inserido_por" > Inserido Por</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -130,6 +131,9 @@
                                                 </td>
                                                 <td class="td-hora_termino">
                                                     <?php echo  $data['hora_termino'] ; ?>
+                                                </td>
+                                                <td class="td-inserido_por">
+                                                    <?php echo  $data['inserido_por'] ; ?>
                                                 </td>
                                                 <!--PageComponentEnd-->
                                                 <td class="td-btn">

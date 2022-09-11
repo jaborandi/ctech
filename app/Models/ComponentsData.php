@@ -49,6 +49,18 @@ class ComponentsData{
 	
 
 	/**
+     * categoria_option_list Model Action
+     * @return array
+     */
+	function categoria_option_list(){
+		$sqltext = "SELECT  DISTINCT categoria AS value,categoria AS label FROM projetos ORDER BY categoria ASC";
+		$query_params = [];
+		$arr = DB::select(DB::raw($sqltext), $query_params);
+		return $arr;
+	}
+	
+
+	/**
      * usuarios_option_list Model Action
      * @return array
      */
@@ -91,10 +103,10 @@ class ComponentsData{
 	
 
 	/**
-     * getcount_tarefasaguardando Model Action
+     * getcount_afazer Model Action
      * @return int
      */
-	function getcount_tarefasaguardando(){
+	function getcount_afazer(){
 		$sqltext = "SELECT COUNT(*) AS num FROM tarefas WHERE status='AGUARDANDO' and usuarios =".auth()->user()->id;
 		$query_params = [];
 		$val = DB::selectOne(DB::raw($sqltext), $query_params);
@@ -103,10 +115,10 @@ class ComponentsData{
 	
 
 	/**
-     * getcount_tarefasemprogresso Model Action
+     * getcount_fazendo Model Action
      * @return int
      */
-	function getcount_tarefasemprogresso(){
+	function getcount_fazendo(){
 		$sqltext = "SELECT COUNT(*) AS num FROM tarefas WHERE status='EM PROGRESSO' and usuarios =".auth()->user()->id;
 		$query_params = [];
 		$val = DB::selectOne(DB::raw($sqltext), $query_params);
@@ -115,10 +127,10 @@ class ComponentsData{
 	
 
 	/**
-     * getcount_tarefas_2 Model Action
+     * getcount_feitas Model Action
      * @return int
      */
-	function getcount_tarefas_2(){
+	function getcount_feitas(){
 		$sqltext = "SELECT COUNT(*) AS num FROM tarefas WHERE status='CONCLUÍDA' and usuarios =".auth()->user()->id;
 		$query_params = [];
 		$val = DB::selectOne(DB::raw($sqltext), $query_params);

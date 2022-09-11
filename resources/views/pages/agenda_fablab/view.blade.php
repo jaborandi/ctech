@@ -55,7 +55,8 @@
                                         <?php } else { ?>
                                         <p class='text-center' style='color: #dc3545'>CANCELADO</p>
                                         <?php } ?>
-                                        <p class='text-center'><i class="material-icons ">today</i>Agendado para o dia <strong><?php echo format_date( $data['data_inicio'] , 'd/m/Y'); ?> às <?php echo format_date( $data['hora_inicio'] , 'H:i'); ?> horas</strong></p>
+                                        <p class='text-center'><i class="material-icons ">today</i>Agendado para o dia <strong><?php echo format_date( $data['data_inicio'] , 'd/m/Y'); ?> às <?php echo format_date( $data['hora_inicio'] , 'H:i'); ?> horas</strong><br><br><strong>Agendado por: </strong><?php echo $data['inserido_por']; ?></p>
+                                        <br><strong>Agendado por:</strong><?php echo $data['inserido_por']; ?>
                                         <!--PageComponentEnd-->
                                         <div class="d-flex q-col-gutter-xs justify-btween">
                                             <div class="dropdown" >

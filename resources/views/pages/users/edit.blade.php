@@ -78,6 +78,30 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label" for="cor_postit">Cor do PostIt </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div id="ctrl-cor_postit-holder" class=" ">
+                                                    <input id="ctrl-cor_postit"  value="<?php  echo $data['cor_postit']; ?>" type="text" placeholder="#000000"  name="cor_postit"  class="form-control " />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label" for="cor_letra">Cor Letra </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div id="ctrl-cor_letra-holder" class=" ">
+                                                    <input id="ctrl-cor_letra"  value="<?php  echo $data['cor_letra']; ?>" type="text" placeholder="Entrar Cor Letra"  name="cor_letra"  class="form-control " />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-ajax-status"></div>
                                 <!--[form-content-end]-->

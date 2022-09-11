@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/public/uploads
 /public/storage
 /storage/*.key
 .env
@@ -14,4 +15,4 @@ yarn-error.log
 ctech.zip
 server.php
 config/upload.php
-bootstrap/app.php
+bootstrap/*.php

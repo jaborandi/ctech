@@ -39,7 +39,7 @@ class Users extends Authenticatable
      *
      * @var array
      */
-	protected $fillable = ['name','password','image','phone','email'];
+	protected $fillable = ['name','password','image','phone','email','cor_postit','cor_letra'];
 	
 
 	/**
@@ -53,7 +53,9 @@ class Users extends Authenticatable
 			"name",
 			"image",
 			"phone",
-			"email" 
+			"email",
+			"cor_postit",
+			"cor_letra" 
 		];
 	}
 	
@@ -69,7 +71,9 @@ class Users extends Authenticatable
 			"name",
 			"image",
 			"phone",
-			"email" 
+			"email",
+			"cor_postit",
+			"cor_letra" 
 		];
 	}
 	
@@ -84,7 +88,9 @@ class Users extends Authenticatable
 			"id",
 			"name",
 			"phone",
-			"email" 
+			"email",
+			"cor_postit",
+			"cor_letra" 
 		];
 	}
 	
@@ -99,7 +105,9 @@ class Users extends Authenticatable
 			"id",
 			"name",
 			"phone",
-			"email" 
+			"email",
+			"cor_postit",
+			"cor_letra" 
 		];
 	}
 	
@@ -114,7 +122,9 @@ class Users extends Authenticatable
 			"id",
 			"name",
 			"image",
-			"phone" 
+			"phone",
+			"cor_postit",
+			"cor_letra" 
 		];
 	}
 	
@@ -129,7 +139,9 @@ class Users extends Authenticatable
 			"id",
 			"name",
 			"phone",
-			"email" 
+			"email",
+			"cor_postit",
+			"cor_letra" 
 		];
 	}
 	
@@ -144,7 +156,9 @@ class Users extends Authenticatable
 			"id",
 			"name",
 			"phone",
-			"email" 
+			"email",
+			"cor_postit",
+			"cor_letra" 
 		];
 	}
 	
@@ -159,7 +173,9 @@ class Users extends Authenticatable
 			"id",
 			"name",
 			"image",
-			"phone" 
+			"phone",
+			"cor_postit",
+			"cor_letra" 
 		];
 	}
 	

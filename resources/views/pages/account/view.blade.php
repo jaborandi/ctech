@@ -121,6 +121,26 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="border-top td-cor_postit p-2">
+                                                        <div class="row align-items-center">
+                                                            <div class="col">
+                                                                <div class="text-muted"> Cor Postit</div>
+                                                                <div class="font-weight-bold">
+                                                                    <?php echo  $data['cor_postit'] ; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-top td-cor_letra p-2">
+                                                        <div class="row align-items-center">
+                                                            <div class="col">
+                                                                <div class="text-muted"> Cor Letra</div>
+                                                                <div class="font-weight-bold">
+                                                                    <?php echo  $data['cor_letra'] ; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </tbody>    
                                             </table>
                                         </div>

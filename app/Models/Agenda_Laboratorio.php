@@ -2,7 +2,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class Agenda_Fablab extends Model 
+class Agenda_Laboratorio extends Model 
 {
 	
 
@@ -11,7 +11,7 @@ class Agenda_Fablab extends Model
      *
      * @var string
      */
-	protected $table = 'agenda_fablab';
+	protected $table = 'agenda_laboratorio';
 	
 
 	/**
@@ -28,7 +28,7 @@ class Agenda_Fablab extends Model
      * @var array
      */
 	protected $fillable = [
-		'confirmacao','titulo','data_inicio','hora_inicio','data_termino','hora_termino','observacoes','inserido_por'
+		'confirmacao','titulo','numero_pessoas','data_inicio','hora_inicio','data_termino','hora_termino','inserido_por','observacoes'
 	];
 	
 
@@ -49,10 +49,10 @@ class Agenda_Fablab extends Model
 		//search table record 
 		$search_condition = '(
 				titulo LIKE ?  OR 
-				observacoes LIKE ?  OR 
+				numero_pessoas LIKE ?  OR 
 				confirmacao LIKE ?  OR 
-				hora_inicio LIKE ?  OR 
-				inserido_por LIKE ? 
+				inserido_por LIKE ?  OR 
+				observacoes LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -71,13 +71,14 @@ class Agenda_Fablab extends Model
 		return [ 
 			"id",
 			"titulo",
-			"observacoes",
+			"numero_pessoas",
 			"confirmacao",
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
 			"hora_termino",
-			"inserido_por" 
+			"inserido_por",
+			"observacoes" 
 		];
 	}
 	
@@ -91,13 +92,14 @@ class Agenda_Fablab extends Model
 		return [ 
 			"id",
 			"titulo",
-			"observacoes",
+			"numero_pessoas",
 			"confirmacao",
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
 			"hora_termino",
-			"inserido_por" 
+			"inserido_por",
+			"observacoes" 
 		];
 	}
 	
@@ -113,6 +115,7 @@ class Agenda_Fablab extends Model
 			"titulo",
 			"observacoes",
 			"confirmacao",
+			"numero_pessoas",
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
@@ -133,6 +136,7 @@ class Agenda_Fablab extends Model
 			"titulo",
 			"observacoes",
 			"confirmacao",
+			"numero_pessoas",
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
@@ -152,12 +156,13 @@ class Agenda_Fablab extends Model
 			"id",
 			"confirmacao",
 			"titulo",
+			"numero_pessoas",
 			"data_inicio",
 			"hora_inicio",
 			"data_termino",
 			"hora_termino",
-			"observacoes",
-			"inserido_por" 
+			"inserido_por",
+			"observacoes" 
 		];
 	}
 }

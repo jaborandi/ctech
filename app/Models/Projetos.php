@@ -2,7 +2,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class Agenda_Fablab extends Model 
+class Projetos extends Model 
 {
 	
 
@@ -11,7 +11,7 @@ class Agenda_Fablab extends Model
      *
      * @var string
      */
-	protected $table = 'agenda_fablab';
+	protected $table = 'projetos';
 	
 
 	/**
@@ -28,7 +28,7 @@ class Agenda_Fablab extends Model
      * @var array
      */
 	protected $fillable = [
-		'confirmacao','titulo','data_inicio','hora_inicio','data_termino','hora_termino','observacoes','inserido_por'
+		'titulo','categoria','descricao','imagem','arquivos','inserido_por','atualizado_por'
 	];
 	
 
@@ -37,7 +37,9 @@ class Agenda_Fablab extends Model
      *
      * @var bool
      */
-	public $timestamps = false;
+	public $timestamps = true;
+	const CREATED_AT = 'inserido_em'; 
+	const UPDATED_AT = 'atualizado_em'; 
 	
 
 	/**
@@ -49,13 +51,14 @@ class Agenda_Fablab extends Model
 		//search table record 
 		$search_condition = '(
 				titulo LIKE ?  OR 
-				observacoes LIKE ?  OR 
-				confirmacao LIKE ?  OR 
-				hora_inicio LIKE ?  OR 
-				inserido_por LIKE ? 
+				descricao LIKE ?  OR 
+				arquivos LIKE ?  OR 
+				inserido_por LIKE ?  OR 
+				atualizado_por LIKE ?  OR 
+				categoria LIKE ? 
 		)';
 		$search_params = [
-			"%$text%","%$text%","%$text%","%$text%","%$text%"
+			"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 		];
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
@@ -71,13 +74,14 @@ class Agenda_Fablab extends Model
 		return [ 
 			"id",
 			"titulo",
-			"observacoes",
-			"confirmacao",
-			"data_inicio",
-			"hora_inicio",
-			"data_termino",
-			"hora_termino",
-			"inserido_por" 
+			"descricao",
+			"imagem",
+			"arquivos",
+			"inserido_por",
+			"inserido_em",
+			"atualizado_por",
+			"atualizado_em",
+			"categoria" 
 		];
 	}
 	
@@ -91,13 +95,14 @@ class Agenda_Fablab extends Model
 		return [ 
 			"id",
 			"titulo",
-			"observacoes",
-			"confirmacao",
-			"data_inicio",
-			"hora_inicio",
-			"data_termino",
-			"hora_termino",
-			"inserido_por" 
+			"descricao",
+			"imagem",
+			"arquivos",
+			"inserido_por",
+			"inserido_em",
+			"atualizado_por",
+			"atualizado_em",
+			"categoria" 
 		];
 	}
 	
@@ -110,14 +115,15 @@ class Agenda_Fablab extends Model
 	public static function viewFields(){
 		return [ 
 			"id",
+			"imagem",
 			"titulo",
-			"observacoes",
-			"confirmacao",
-			"data_inicio",
-			"hora_inicio",
-			"data_termino",
-			"hora_termino",
-			"inserido_por" 
+			"descricao",
+			"inserido_por",
+			"categoria",
+			"inserido_em",
+			"atualizado_por",
+			"atualizado_em",
+			"arquivos" 
 		];
 	}
 	
@@ -130,14 +136,15 @@ class Agenda_Fablab extends Model
 	public static function exportViewFields(){
 		return [ 
 			"id",
+			"imagem",
 			"titulo",
-			"observacoes",
-			"confirmacao",
-			"data_inicio",
-			"hora_inicio",
-			"data_termino",
-			"hora_termino",
-			"inserido_por" 
+			"descricao",
+			"inserido_por",
+			"categoria",
+			"inserido_em",
+			"atualizado_por",
+			"atualizado_em",
+			"arquivos" 
 		];
 	}
 	
@@ -150,14 +157,12 @@ class Agenda_Fablab extends Model
 	public static function editFields(){
 		return [ 
 			"id",
-			"confirmacao",
 			"titulo",
-			"data_inicio",
-			"hora_inicio",
-			"data_termino",
-			"hora_termino",
-			"observacoes",
-			"inserido_por" 
+			"categoria",
+			"descricao",
+			"imagem",
+			"arquivos",
+			"atualizado_por" 
 		];
 	}
 }

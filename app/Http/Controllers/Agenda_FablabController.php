@@ -63,6 +63,7 @@ class Agenda_FablabController extends Controller
      */
 	function store(Agenda_FablabAddRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
+		$modeldata['inserido_por'] = auth()->user()->name;
 		
 		//save Agenda_Fablab record
 		$record = Agenda_Fablab::create($modeldata);

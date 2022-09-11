@@ -26,7 +26,20 @@
                 Agenda do fablab 
             </a>
         </div>
+        <div class="col-sm-12 comp-grid" >
+            <div class=" "><br><br></div>
+        </div>
+        <div class="col-sm-6 comp-grid" >
+            <a  class="btn btn-primary btn-block" href="<?php print_link("atividades/index") ?>" >
+            Atividades pedagógicas do FabLab 
+        </a>
     </div>
+    <div class="col-sm-6 comp-grid" >
+        <a  class="btn btn-primary btn-block" href="<?php print_link("agenda_laboratorio/index") ?>" >
+        Agenda do laboratório de informática 
+    </a>
+</div>
+</div>
 </div>
 </div>
 </div>
