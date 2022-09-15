@@ -20,7 +20,7 @@ class Agenda_LaboratorioController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.agenda_laboratorio.list";
 		$query = Agenda_Laboratorio::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 999999999;
 		if($request->search){
 			$search = trim($request->search);
 			Agenda_Laboratorio::search($query, $search); // search table records

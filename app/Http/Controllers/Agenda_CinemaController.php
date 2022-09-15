@@ -20,7 +20,7 @@ class Agenda_CinemaController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.agenda_cinema.list";
 		$query = Agenda_Cinema::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 999999999;
 		if($request->search){
 			$search = trim($request->search);
 			Agenda_Cinema::search($query, $search); // search table records

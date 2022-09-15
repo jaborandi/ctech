@@ -20,7 +20,7 @@ class Agenda_FablabController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.agenda_fablab.list";
 		$query = Agenda_Fablab::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 999999999;
 		if($request->search){
 			$search = trim($request->search);
 			Agenda_Fablab::search($query, $search); // search table records

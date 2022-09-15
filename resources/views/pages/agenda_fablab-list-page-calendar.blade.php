@@ -36,7 +36,7 @@
 			document.addEventListener('DOMContentLoaded', function() {
 				var calendarEl = document.getElementById('calendar');
 				calendar = new FullCalendar.Calendar(calendarEl, {
-					initialView: 'timeGridWeek',
+					initialView: 'dayGridMonth',
 					locale: 'pt-br',
 					headerToolbar: {
 						center: 'timeGridWeek,dayGridWeek,dayGridMonth,listWeek',
